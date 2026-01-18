@@ -391,7 +391,7 @@
       box-shadow: 0 10px 30px rgba(0,0,0,0.12);
       padding: 12px 14px;
       backdrop-filter: blur(8px);
-      cursor: pointer; /* ✅ 클릭 가능 */
+      cursor: pointer;
       user-select: none;
     }
     .dockTop { display: flex; justify-content: space-between; align-items: center; }
@@ -460,9 +460,7 @@
       font-size: 22px;
       flex: 0 0 auto;
     }
-    .passportText{
-      min-width: 0;
-    }
+    .passportText{ min-width: 0; }
     .passportTitle{
       font-size: 14px;
       font-weight: 900;
@@ -492,7 +490,7 @@
       flex: 0 0 auto;
     }
 
-    /* ====== 모달(리워드/패스포트) ====== */
+    /* ====== 모달(리워드/패스포트/관리자) ====== */
     .modal {
       position: fixed;
       inset: 0;
@@ -737,6 +735,196 @@
       color: #888;
       text-align: center;
       line-height: 1.35;
+    }
+
+    /* ===== 관리자(B2B) 대시보드 스타일 ===== */
+    .adminWrap { background: #f4f5f7; }
+    .adminHeader {
+      background: white;
+      padding: 18px 16px;
+      border-bottom: 1px solid #e8e8e8;
+    }
+    .adminHeader .title {
+      font-size: 18px;
+      font-weight: 900;
+      color: #1a1a1a;
+      margin-bottom: 6px;
+    }
+    .adminHeader .sub {
+      font-size: 13px;
+      color: #666;
+      line-height: 1.45;
+    }
+
+    .dashboard-frame {
+      background: white;
+      margin: 12px;
+      border-radius: 16px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+      overflow: hidden;
+    }
+
+    .dashboard-grid {
+      display: grid;
+      grid-template-columns: 1.15fr 0.85fr;
+      gap: 1px;
+      background: #e8e8e8;
+      height: 520px;
+    }
+
+    .map-section {
+      background: white;
+      padding: 14px;
+      position: relative;
+    }
+    .map-container {
+      width: 100%;
+      height: 100%;
+      background: #e3f2e1;
+      border-radius: 12px;
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border: 1px solid #d0d0d0;
+    }
+    .map-text {
+      font-size: 22px;
+      font-weight: 900;
+      color: #1a1a1a;
+      letter-spacing: 4px;
+    }
+
+    .status-dot {
+      position: absolute;
+      width: 14px;
+      height: 14px;
+      border-radius: 50%;
+      border: 2px solid white;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+    }
+    .dot-green { background: #4caf50; top: 25%; left: 35%; }
+    .dot-purple { background: #9c27b0; top: 20%; right: 20%; }
+    .dot-red { background: #f44336; top: 35%; right: 12%; }
+    .dot-green2 { background: #4caf50; bottom: 30%; left: 25%; }
+
+    .adminLegend {
+      position: absolute;
+      bottom: 14px;
+      right: 14px;
+      background: white;
+      padding: 10px 12px;
+      border-radius: 10px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.10);
+    }
+    .adminLegend .legend-title {
+      font-size: 12px;
+      color: #666;
+      margin-bottom: 8px;
+      font-weight: 900;
+    }
+    .adminLegend .legend-items {
+      display: flex;
+      gap: 10px;
+    }
+    .adminLegend .legend-item {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 12px;
+      color: #111827;
+      font-weight: 800;
+    }
+    .adminLegend .legend-dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+    }
+
+    .info-section {
+      background: white;
+      display: flex;
+      flex-direction: column;
+      overflow-y: auto;
+    }
+    .info-header {
+      padding: 14px;
+      border-bottom: 1px solid #e8e8e8;
+    }
+    .info-title {
+      font-size: 16px;
+      font-weight: 900;
+      color: #1a1a1a;
+      margin-bottom: 4px;
+    }
+    .info-subtitle {
+      font-size: 12px;
+      color: #888;
+    }
+
+    .info-block {
+      padding: 14px;
+      border-bottom: 1px solid #e8e8e8;
+    }
+    .block-title {
+      font-size: 13px;
+      font-weight: 900;
+      color: #1a1a1a;
+      margin-bottom: 12px;
+    }
+    .info-item {
+      display: flex;
+      justify-content: space-between;
+      gap: 10px;
+      margin-bottom: 10px;
+    }
+    .info-key {
+      font-size: 12px;
+      color: #888;
+      font-weight: 800;
+    }
+    .info-val {
+      font-size: 12px;
+      font-weight: 900;
+      color: #1a1a1a;
+    }
+
+    .badge-warning {
+      display: inline-block;
+      padding: 4px 10px;
+      border-radius: 8px;
+      font-size: 12px;
+      font-weight: 900;
+      background: #fff3e0;
+      color: #f57c00;
+    }
+
+    .chart-row { margin-bottom: 12px; }
+    .chart-title { font-size: 12px; color: #666; margin-bottom: 6px; font-weight: 800; }
+    .chart-bg { background: #f0f0f0; height: 6px; border-radius: 3px; overflow: hidden; }
+    .chart-value { height: 100%; background: #666; border-radius: 3px; }
+
+    .alert-box {
+      margin-top: 12px;
+      padding: 12px;
+      background: #fff8e1;
+      border-radius: 10px;
+      border-left: 3px solid #ffc107;
+    }
+    .alert-text { font-size: 13px; color: #f57c00; font-weight: 900; margin-bottom: 4px; }
+    .alert-sub { font-size: 12px; color: #888; }
+
+    .adminCodeCard{
+      background:#fff;
+      border:1px solid #e5e7eb;
+      border-radius:16px;
+      padding:14px;
+    }
+    .adminCodeTitle{
+      font-weight: 900;
+      font-size: 14px;
+      color:#111827;
+      margin-bottom: 8px;
     }
   </style>
 </head>
@@ -1038,6 +1226,154 @@
     </div>
   </div>
 
+  <!-- ===================== 관리자 코드 입력 모달 ===================== -->
+  <div id="adminCodeModal" class="modal" aria-hidden="true">
+    <div class="modalSheet" style="height:auto; max-height: 78vh;">
+      <div class="modalTopBar">
+        <div class="modalTopTitle">관리자 모드</div>
+        <button id="closeAdminCode" class="closeBtn" aria-label="닫기">✕</button>
+      </div>
+
+      <div class="modalScroll" style="padding: 14px;">
+        <div class="adminCodeCard">
+          <div class="adminCodeTitle">관리자 전용 코드를 입력해주세요</div>
+
+          <!-- ✅ (예:99999) 제거 -->
+          <input id="adminCodeInput" inputmode="numeric" placeholder=""
+                 style="width:100%; padding:12px 12px; border-radius:12px; border:1px solid #e5e7eb; font-size:14px; outline:none;">
+
+          <div id="adminCodeMsg" style="margin-top:10px; font-size:12px; font-weight:900; color:#ef4444; display:none;">
+            코드가 올바르지 않습니다.
+          </div>
+
+          <div style="display:flex; gap:10px; margin-top:12px;">
+            <button id="adminCodeSubmit" class="uploadBtn" style="flex:1;">확인</button>
+            <button id="adminCodeCancel" class="ghostBtn" style="flex:1;">취소</button>
+          </div>
+        </div>
+
+        <p class="hint" style="margin-top:10px;">
+          * 제목을 연속 3번 누르면 관리자 모드로 진입합니다.
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===================== 관리자 대시보드 모달 ===================== -->
+  <div id="adminModal" class="modal" aria-hidden="true">
+    <div class="modalSheet">
+      <div class="modalTopBar">
+        <div class="modalTopTitle">관리자 대시보드</div>
+        <button id="closeAdmin" class="closeBtn" aria-label="닫기">✕</button>
+      </div>
+
+      <div class="modalScroll adminWrap">
+        <div class="adminHeader">
+          <div class="title">📊 해안 위험 모니터링 (관리자)</div>
+          <div class="sub">시민 제보/이용 현황 기반으로<br/>우선 점검 구역을 확인합니다</div>
+        </div>
+
+        <div class="dashboard-frame">
+          <div class="dashboard-grid">
+            <div class="map-section">
+              <div class="map-container">
+                <div class="map-text">JEJU</div>
+
+                <div class="status-dot dot-green"></div>
+                <div class="status-dot dot-purple"></div>
+                <div class="status-dot dot-red"></div>
+                <div class="status-dot dot-green2"></div>
+
+                <div class="adminLegend">
+                  <div class="legend-title">위험 등급</div>
+                  <div class="legend-items">
+                    <div class="legend-item">
+                      <div class="legend-dot" style="background:#4caf50;"></div><span>보통</span>
+                    </div>
+                    <div class="legend-item">
+                      <div class="legend-dot" style="background:#9c27b0;"></div><span>우려</span>
+                    </div>
+                    <div class="legend-item">
+                      <div class="legend-dot" style="background:#f44336;"></div><span>심각</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="info-section">
+              <div class="info-header">
+                <div class="info-title">모니터링 대시보드</div>
+                <div class="info-subtitle">해양 구조물 실시간 상태</div>
+              </div>
+
+              <div class="info-block">
+                <div class="block-title">선택된 지점 정보</div>
+
+                <div class="info-item">
+                  <span class="info-key">선택 지점</span>
+                  <span class="info-val" id="adminSpot">협재</span>
+                </div>
+
+                <div class="info-item">
+                  <span class="info-key">최근 상태 변화</span>
+                  <span class="info-val">파손 위험 증가</span>
+                </div>
+
+                <div class="info-item">
+                  <span class="info-key">위험 추세</span>
+                  <span class="badge-warning">상승</span>
+                </div>
+
+                <div class="info-item" style="margin-bottom:0;">
+                  <span class="info-key">누적 제보(데모)</span>
+                  <span class="info-val"><span id="adminReports">0</span>건</span>
+                </div>
+              </div>
+
+              <div class="info-block">
+                <div class="block-title">시민 이용 현황</div>
+
+                <div class="chart-row">
+                  <div class="chart-title">최근 7일 방문 횟수</div>
+                  <div class="chart-bg"><div id="barVisit" class="chart-value" style="width:78%;"></div></div>
+                </div>
+
+                <div class="chart-row">
+                  <div class="chart-title">참여 인증 수</div>
+                  <div class="chart-bg"><div id="barJoin" class="chart-value" style="width:62%;"></div></div>
+                </div>
+
+                <div class="chart-row" style="margin-bottom:0;">
+                  <div class="chart-title">체류 밀도</div>
+                  <div class="chart-bg"><div id="barStay" class="chart-value" style="width:86%;"></div></div>
+                </div>
+
+                <div class="alert-box">
+                  <div class="alert-text">⚠️ 이용 밀도 대비 위험도 상승 중</div>
+                  <div class="alert-sub">우선 점검이 권장됩니다</div>
+                </div>
+              </div>
+
+              <div class="info-block" style="border-bottom:none;">
+                <div class="block-title">관리자 기능(데모)</div>
+                <div style="display:flex; gap:10px; flex-wrap:wrap;">
+                  <button id="adminResetMyReward" class="ghostBtn">내 리워드 초기화</button>
+                  <button id="adminCloseAll" class="uploadBtn">닫기</button>
+                </div>
+                <p class="hint" style="margin-top:10px;">
+                  * 발표용 시안: 실제 운영에서는 지자체/관리자 계정으로 접근합니다.
+                </p>
+              </div>
+
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
   <script>
     // ====== 리워드 ======
     const MAX_POINT = 100;
@@ -1072,7 +1408,6 @@
       localStorage.setItem("myPoint", String(myPoint));
       localStorage.setItem("myUploadCount", String(uploadCount));
 
-      // 모달에도 반영
       const big = document.getElementById("rewardPointBig");
       const leftBig = document.getElementById("rewardLeftBig");
       if (big) big.textContent = `${myPoint}P`;
@@ -1331,11 +1666,7 @@
     // 모달에서 AR 바로가기
     document.getElementById("goARFromReward").addEventListener("click", () => {
       closeModal(rewardModal);
-      // AR 패널 열기
-      if (predictPanel.style.display !== "block") {
-        togglePanel(predictPanel);
-      }
-      // 살짝 스크롤
+      if (predictPanel.style.display !== "block") togglePanel(predictPanel);
       setTimeout(() => {
         btnPredict.scrollIntoView({behavior:"smooth", block:"start"});
       }, 120);
@@ -1346,12 +1677,13 @@
       if(e.key === "Escape"){
         if(rewardModal.classList.contains("show")) closeModal(rewardModal);
         if(passportModal.classList.contains("show")) closeModal(passportModal);
+        if(document.getElementById("adminCodeModal")?.classList.contains("show")) closeModal(document.getElementById("adminCodeModal"));
+        if(document.getElementById("adminModal")?.classList.contains("show")) closeModal(document.getElementById("adminModal"));
       }
     });
 
     // ===================== 패스포트: 레벨/통계 계산(데모) =====================
     function getLevelInfo(count){
-      // 업로드 횟수 기반 레벨(발표용 로직)
       if(count >= 10) return { lv: 4, name: "해안 수호자", icon: "🛡️", need: 15, base: 10 };
       if(count >= 6)  return { lv: 3, name: "해안 관찰자", icon: "🏖️", need: 10, base: 6 };
       if(count >= 3)  return { lv: 2, name: "해안 탐험가", icon: "🧭", need: 6,  base: 3 };
@@ -1365,16 +1697,13 @@
       const numer = Math.max(0, uploadCount - info.base);
       const pct = Math.min(100, Math.round((numer / denom) * 100));
 
-      // 홈 카드 서브텍스트
       const passportHomeSub = document.getElementById("passportHomeSub");
       passportHomeSub.textContent = `Lv.${info.lv} ${info.name} · 인증 ${uploadCount}회`;
 
-      // 모달 텍스트
       document.querySelector("#passportModal .level-icon").textContent = info.icon;
       document.getElementById("passportLevelText").textContent = `Lv.${info.lv} ${info.name}`;
       document.getElementById("passportLevelDesc").textContent = "꾸준한 참여로 안전한 해안을 만들어가고 있어요";
 
-      // 통계(발표용: 업로드 기반으로 자연스러운 값 생성)
       const visited = Math.max(1, Math.min(12, Math.floor(uploadCount / 2) + 1));
       const days = Math.max(1, 7 + uploadCount * 2);
 
@@ -1390,106 +1719,98 @@
     updatePassportUI();
 
     // ===================== 관리자 모드 (제목 3탭 → 코드 99999) =====================
-const appTitle = document.getElementById("appTitle");
+    (function initAdmin(){
+      const appTitle = document.getElementById("appTitle");
 
-const adminCodeModal = document.getElementById("adminCodeModal");
-const adminModal = document.getElementById("adminModal");
+      const adminCodeModal = document.getElementById("adminCodeModal");
+      const adminModal = document.getElementById("adminModal");
 
-const closeAdminCode = document.getElementById("closeAdminCode");
-const adminCodeCancel = document.getElementById("adminCodeCancel");
-const adminCodeSubmit = document.getElementById("adminCodeSubmit");
-const adminCodeInput = document.getElementById("adminCodeInput");
-const adminCodeMsg = document.getElementById("adminCodeMsg");
+      const closeAdminCode = document.getElementById("closeAdminCode");
+      const adminCodeCancel = document.getElementById("adminCodeCancel");
+      const adminCodeSubmit = document.getElementById("adminCodeSubmit");
+      const adminCodeInput = document.getElementById("adminCodeInput");
+      const adminCodeMsg = document.getElementById("adminCodeMsg");
 
-const closeAdmin = document.getElementById("closeAdmin");
-const adminCloseAll = document.getElementById("adminCloseAll");
-const adminResetMyReward = document.getElementById("adminResetMyReward");
+      const closeAdmin = document.getElementById("closeAdmin");
+      const adminCloseAll = document.getElementById("adminCloseAll");
+      const adminResetMyReward = document.getElementById("adminResetMyReward");
 
-const adminReports = document.getElementById("adminReports");
+      const adminReports = document.getElementById("adminReports");
 
-let tapCount = 0;
-let tapTimer = null;
+      if (!appTitle || !adminCodeModal || !adminModal) return;
 
-function openModalOnly(modalEl){
-  modalEl.classList.add("show");
-  modalEl.setAttribute("aria-hidden","false");
-  document.body.style.overflow = "hidden";
-}
-function closeModalOnly(modalEl){
-  modalEl.classList.remove("show");
-  modalEl.setAttribute("aria-hidden","true");
-  document.body.style.overflow = "";
-}
+      function openAny(modalEl){
+        openModal(modalEl);
+      }
+      function closeAny(modalEl){
+        closeModal(modalEl);
+      }
 
-function openAdminCode(){
-  adminCodeMsg.style.display = "none";
-  adminCodeInput.value = "";
-  openModalOnly(adminCodeModal);
-  setTimeout(() => adminCodeInput.focus(), 60);
-}
+      function openAdminCode(){
+        if (adminCodeMsg) adminCodeMsg.style.display = "none";
+        if (adminCodeInput) adminCodeInput.value = "";
+        openAny(adminCodeModal);
+        setTimeout(() => adminCodeInput && adminCodeInput.focus(), 80);
+      }
 
-function openAdminDashboard(){
-  // 관리자 화면에 현재 값 반영(데모)
-  // 업로드 횟수를 "제보 건수"처럼 보여줌
-  const count = Number(localStorage.getItem("myUploadCount") || "0");
-  if (adminReports) adminReports.textContent = String(count);
-  openModalOnly(adminModal);
-}
+      function openAdminDashboard(){
+        const count = Number(localStorage.getItem("myUploadCount") || "0");
+        if (adminReports) adminReports.textContent = String(count);
+        openAny(adminModal);
+      }
 
-function closeAdminCodeModal(){ closeModalOnly(adminCodeModal); }
-function closeAdminModal(){ closeModalOnly(adminModal); }
+      // ✅ 3탭 감지 (click + touchend 둘 다)
+      let tapCount = 0;
+      let lastTapAt = 0;
 
-// 제목 3번 탭 감지 (모바일 대응: click이면 충분)
-appTitle.addEventListener("click", () => {
-  tapCount += 1;
+      function handleTap(){
+        const now = Date.now();
+        if (now - lastTapAt > 1000) tapCount = 0;
+        lastTapAt = now;
 
-  if (tapTimer) clearTimeout(tapTimer);
-  tapTimer = setTimeout(() => { tapCount = 0; }, 900); // 0.9초 내 3번
+        tapCount += 1;
+        if (tapCount >= 3){
+          tapCount = 0;
+          openAdminCode();
+        }
+      }
 
-  if (tapCount >= 3) {
-    tapCount = 0;
-    openAdminCode();
-  }
-});
+      appTitle.addEventListener("click", handleTap, { passive: true });
+      appTitle.addEventListener("touchend", handleTap, { passive: true });
 
-// 코드 확인
-adminCodeSubmit.addEventListener("click", () => {
-  const code = (adminCodeInput.value || "").trim();
-  if (code === "99999") {
-    closeAdminCodeModal();
-    openAdminDashboard();
-  } else {
-    adminCodeMsg.style.display = "block";
-  }
-});
+      adminCodeSubmit?.addEventListener("click", () => {
+        const code = (adminCodeInput?.value || "").trim();
+        if (code === "99999"){
+          closeAny(adminCodeModal);
+          openAdminDashboard();
+        } else {
+          if (adminCodeMsg) adminCodeMsg.style.display = "block";
+        }
+      });
 
-adminCodeInput.addEventListener("keydown", (e) => {
-  if (e.key === "Enter") adminCodeSubmit.click();
-});
+      adminCodeInput?.addEventListener("keydown", (e) => {
+        if (e.key === "Enter") adminCodeSubmit?.click();
+      });
 
-// 닫기들
-closeAdminCode.addEventListener("click", closeAdminCodeModal);
-adminCodeCancel.addEventListener("click", closeAdminCodeModal);
-adminCodeModal.addEventListener("click", (e) => { if(e.target === adminCodeModal) closeAdminCodeModal(); });
+      closeAdminCode?.addEventListener("click", () => closeAny(adminCodeModal));
+      adminCodeCancel?.addEventListener("click", () => closeAny(adminCodeModal));
+      adminCodeModal.addEventListener("click", (e) => { if (e.target === adminCodeModal) closeAny(adminCodeModal); });
 
-closeAdmin.addEventListener("click", closeAdminModal);
-adminCloseAll.addEventListener("click", closeAdminModal);
-adminModal.addEventListener("click", (e) => { if(e.target === adminModal) closeAdminModal(); });
+      closeAdmin?.addEventListener("click", () => closeAny(adminModal));
+      adminCloseAll?.addEventListener("click", () => closeAny(adminModal));
+      adminModal.addEventListener("click", (e) => { if (e.target === adminModal) closeAny(adminModal); });
 
-// 관리자 기능(데모): 내 리워드 초기화
-adminResetMyReward.addEventListener("click", () => {
-  localStorage.setItem("myPoint", "0");
-  localStorage.setItem("myUploadCount", "0");
+      adminResetMyReward?.addEventListener("click", () => {
+        localStorage.setItem("myPoint", "0");
+        localStorage.setItem("myUploadCount", "0");
 
-  // 너 코드에 이미 있는 업데이트 함수가 있으면 그대로 호출됨
-  if (typeof updateRewardUI === "function") updateRewardUI();
-  if (typeof updatePassportUI === "function") updatePassportUI();
+        updateRewardUI();
+        updatePassportUI();
 
-  alert("내 리워드가 초기화되었습니다 (데모).");
-  // 관리자 화면 숫자도 갱신
-  if (adminReports) adminReports.textContent = "0";
-});
-
+        if (adminReports) adminReports.textContent = "0";
+        alert("내 리워드가 초기화되었습니다 (데모).");
+      });
+    })();
   </script>
 </body>
 </html>
