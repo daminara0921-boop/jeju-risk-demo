@@ -41,7 +41,7 @@
       line-height: 1.4;
     }
 
-    /* 지도 */
+    /* ===== 지도 ===== */
     .mapBox {
       position: relative;
       width: 100%;
@@ -132,6 +132,15 @@
       border: none;
       background: #111827;
       color: white;
+      font-weight: 900;
+      cursor: pointer;
+      font-size: 12px;
+    }
+    .ghostBtn {
+      padding: 10px 12px;
+      border-radius: 12px;
+      border: 1px solid #e5e7eb;
+      background: white;
       font-weight: 900;
       cursor: pointer;
       font-size: 12px;
@@ -239,7 +248,7 @@
       line-height: 1.4;
     }
 
-    /* ✅ 협재 검색시에만 보이는 촬영 기준 문구 */
+    /* 협재 검색시에만 보이는 촬영 기준 문구 */
     .shotHint{
       display: none;
       margin-top: 10px;
@@ -333,7 +342,7 @@
       white-space: nowrap;
     }
 
-    /* ✅ 네 그림 같은 ‘ㄴ자+라운드’ 기준 라인 */
+    /* ‘ㄴ자+라운드’ 기준 라인 */
     .baseCurve{
       position: absolute;
       left: 10px;
@@ -364,7 +373,7 @@
       line-height: 1.35;
     }
 
-    /* 하단 고정 리워드 */
+    /* ===== 하단 고정 리워드 ===== */
     .rewardDock {
       position: fixed;
       left: 0;
@@ -382,6 +391,8 @@
       box-shadow: 0 10px 30px rgba(0,0,0,0.12);
       padding: 12px 14px;
       backdrop-filter: blur(8px);
+      cursor: pointer; /* ✅ 클릭 가능 */
+      user-select: none;
     }
     .dockTop { display: flex; justify-content: space-between; align-items: center; }
     .dockTitle { font-size: 13px; font-weight: 900; color: #111827; }
@@ -423,17 +434,333 @@
       justify-content: space-between;
       align-items: center;
     }
+
+    /* ====== 홈에 들어갈 '내 패스포트' 카드(클릭) ====== */
+    .passportHomeCard{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap: 12px;
+      cursor:pointer;
+      user-select:none;
+    }
+    .passportLeft{
+      display:flex;
+      gap:12px;
+      align-items:center;
+      min-width: 0;
+    }
+    .passportIcon{
+      width: 44px;
+      height: 44px;
+      border-radius: 14px;
+      background:#f3f4f6;
+      display:grid;
+      place-items:center;
+      font-size: 22px;
+      flex: 0 0 auto;
+    }
+    .passportText{
+      min-width: 0;
+    }
+    .passportTitle{
+      font-size: 14px;
+      font-weight: 900;
+      color:#111827;
+      margin: 0;
+    }
+    .passportSub{
+      font-size: 12px;
+      color:#6b7280;
+      margin-top: 4px;
+      line-height: 1.35;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      max-width: 260px;
+    }
+    .chev{
+      width: 36px;
+      height: 36px;
+      border-radius: 12px;
+      border: 1px solid #e5e7eb;
+      background:#fff;
+      display:grid;
+      place-items:center;
+      font-weight: 900;
+      color:#111827;
+      flex: 0 0 auto;
+    }
+
+    /* ====== 모달(리워드/패스포트) ====== */
+    .modal {
+      position: fixed;
+      inset: 0;
+      background: rgba(17,24,39,0.55);
+      z-index: 100000;
+      display: none;
+      padding: 14px;
+    }
+    .modal.show { display: grid; place-items: center; }
+    .modalSheet {
+      width: 100%;
+      max-width: 420px;
+      height: min(92vh, 860px);
+      background: #f4f5f7;
+      border-radius: 20px;
+      overflow: hidden;
+      box-shadow: 0 18px 60px rgba(0,0,0,0.35);
+      border: 1px solid rgba(255,255,255,0.18);
+      display: flex;
+      flex-direction: column;
+    }
+    .modalTopBar{
+      background: #fff;
+      padding: 14px 14px;
+      border-bottom: 1px solid #e5e7eb;
+      display:flex;
+      align-items:center;
+      justify-content: space-between;
+      gap: 10px;
+    }
+    .modalTopTitle{
+      font-size: 15px;
+      font-weight: 900;
+      color:#111827;
+    }
+    .closeBtn{
+      width: 40px;
+      height: 40px;
+      border-radius: 14px;
+      border: 1px solid #e5e7eb;
+      background: #fff;
+      font-weight: 900;
+      cursor:pointer;
+    }
+    .modalScroll{
+      overflow: auto;
+      padding-bottom: 16px;
+    }
+
+    /* ====== 시안 기반 리워드/패스포트 컴포넌트(모달 안) ====== */
+    .page-header {
+      background: white;
+      padding: 18px 16px;
+      border-bottom: 1px solid #e8e8e8;
+    }
+    .page-title {
+      font-size: 20px;
+      font-weight: 900;
+      color: #1a1a1a;
+      margin-bottom: 6px;
+    }
+    .page-subtitle {
+      font-size: 13px;
+      color: #666;
+      line-height: 1.45;
+    }
+
+    .points-card, .level-card {
+      background: white;
+      margin: 12px;
+      border-radius: 16px;
+      padding: 26px 16px;
+      text-align: center;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+    }
+    .points-display {
+      font-size: 46px;
+      font-weight: 900;
+      color: #111827;
+      margin-bottom: 6px;
+      letter-spacing: -1px;
+    }
+    .points-label {
+      font-size: 13px;
+      color: #666;
+    }
+
+    .section-label {
+      font-size: 12px;
+      color: #999;
+      margin: 10px 0 10px 0;
+      font-weight: 700;
+      padding: 0 16px;
+    }
+
+    .benefits-list { padding: 0 12px 6px 12px; }
+    .benefit-item {
+      background: white;
+      border-radius: 12px;
+      padding: 14px;
+      margin-bottom: 10px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+    }
+    .benefit-emoji {
+      font-size: 24px;
+      width: 44px;
+      height: 44px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: #f8f9fa;
+      border-radius: 12px;
+      flex-shrink: 0;
+    }
+    .benefit-content { flex: 1; min-width: 0; }
+    .benefit-name {
+      font-size: 14px;
+      font-weight: 900;
+      color: #111827;
+      margin-bottom: 4px;
+    }
+    .benefit-detail {
+      font-size: 12px;
+      color: #888;
+      line-height: 1.3;
+    }
+    .benefit-button {
+      background: #111827;
+      color: white;
+      border: none;
+      padding: 10px 14px;
+      border-radius: 10px;
+      font-size: 12px;
+      font-weight: 900;
+      cursor: pointer;
+      white-space: nowrap;
+    }
+
+    .rewards-footer, .progress-card {
+      background: white;
+      margin: 12px;
+      border-radius: 16px;
+      padding: 16px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+    }
+
+    .next-reward {
+      font-size: 13px;
+      color: #666;
+      margin-bottom: 12px;
+      text-align: center;
+      line-height: 1.35;
+    }
+    .next-reward strong { color: #111827; font-weight: 900; }
+
+    .action-button {
+      background: #111827;
+      color: white;
+      border: none;
+      padding: 14px;
+      border-radius: 14px;
+      font-size: 14px;
+      font-weight: 900;
+      cursor: pointer;
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+    }
+
+    /* passport (modal) */
+    .level-icon {
+      width: 68px;
+      height: 68px;
+      background: #f8f9fa;
+      border-radius: 50%;
+      margin: 0 auto 14px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 34px;
+    }
+    .level-text {
+      font-size: 18px;
+      font-weight: 900;
+      color: #111827;
+      margin-bottom: 6px;
+    }
+    .level-desc {
+      font-size: 12px;
+      color: #888;
+      line-height: 1.35;
+    }
+
+    .content-section {
+      background: white;
+      margin: 12px;
+      border-radius: 16px;
+      padding: 14px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+    }
+    .stats-grid { display: grid; gap: 10px; }
+    .stat-box {
+      background: white;
+      border-radius: 12px;
+      padding: 14px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border: 1px solid #eef0f3;
+    }
+    .stat-name { font-size: 13px; color: #666; font-weight: 700; }
+    .stat-number { font-size: 20px; font-weight: 900; color: #111827; }
+
+    .progress-label {
+      font-size: 13px;
+      color: #111827;
+      margin-bottom: 10px;
+      font-weight: 900;
+      text-align: left;
+    }
+    .progress-track {
+      background: #e8e8e8;
+      height: 10px;
+      border-radius: 6px;
+      overflow: hidden;
+      margin-bottom: 10px;
+    }
+    .progress-bar-fill {
+      background: #111827;
+      height: 100%;
+      width: 0%;
+      border-radius: 6px;
+      transition: width .35s ease;
+    }
+    .progress-info {
+      font-size: 12px;
+      color: #888;
+      text-align: center;
+      line-height: 1.35;
+    }
   </style>
 </head>
 
 <body>
   <div class="container">
     <div class="card">
-      <h1>제주 연안 위험 지도</h1>
+      <h1 id="appTitle">제주 연안 위험 지도</h1>
       <p class="desc">
         <b>우리 모두 함께 만드는 안전 모니터링</b><br />
         작은 행동이 제주도를 지킵니다. 함께하고 보상 받아요!
       </p>
+    </div>
+
+    <!-- ✅ 홈: 내 패스포트 카드 (제목과 지도 사이) -->
+    <div id="passportHome" class="card passportHomeCard" role="button" aria-label="내 패스포트 열기">
+      <div class="passportLeft">
+        <div class="passportIcon">🪪</div>
+        <div class="passportText">
+          <p class="passportTitle">내 패스포트</p>
+          <div id="passportHomeSub" class="passportSub">참여 기록과 레벨을 확인해요</div>
+        </div>
+      </div>
+      <div class="chev">›</div>
     </div>
 
     <div class="card">
@@ -550,7 +877,7 @@
               z-index: 5;
             "></div>
 
-            <!-- ✅ 파란 기준 라인 -->
+            <!-- 파란 기준 라인 -->
             <svg id="baseCurve" class="baseCurve" viewBox="0 0 200 80" preserveAspectRatio="none" aria-hidden="true">
               <path d="M10,20
                        Q40,20 55,40
@@ -581,8 +908,9 @@
 
   <div id="toast" class="toast">+10P</div>
 
+  <!-- ===== 하단 고정 리워드 (클릭 시 모달 열림) ===== -->
   <div class="rewardDock">
-    <div class="dockInner">
+    <div id="rewardDockBtn" class="dockInner" role="button" aria-label="내 리워드 열기">
       <div class="dockTop">
         <div class="dockTitle">⚡ 내 리워드</div>
         <div class="dockPoint"><span id="mePointDock">0</span>P</div>
@@ -595,6 +923,117 @@
       <div class="dockBottom">
         <span>다음 리워드까지 <b id="toNextDock">100</b>P</span>
         <span>업로드 <b id="uploadCountDock">0</b>회</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===================== 모달: 내 리워드 ===================== -->
+  <div id="rewardModal" class="modal" aria-hidden="true">
+    <div class="modalSheet">
+      <div class="modalTopBar">
+        <div class="modalTopTitle">내 리워드</div>
+        <button id="closeReward" class="closeBtn" aria-label="닫기">✕</button>
+      </div>
+
+      <div class="modalScroll">
+        <div class="page-header">
+          <div class="page-title">내 리워드</div>
+          <div class="page-subtitle">해안 안전 참여로 적립된 혜택을<br/>확인하고 사용하세요</div>
+        </div>
+
+        <div class="points-card">
+          <div id="rewardPointBig" class="points-display">0P</div>
+          <div class="points-label">사용 가능 포인트</div>
+        </div>
+
+        <div class="section-label">사용 가능한 혜택</div>
+
+        <div class="benefits-list">
+          <div class="benefit-item">
+            <div class="benefit-emoji">🪙</div>
+            <div class="benefit-content">
+              <div class="benefit-name">탐나는전 전환</div>
+              <div class="benefit-detail">1,000P → 1,000원</div>
+            </div>
+            <button class="benefit-button" onclick="alert('데모 화면입니다 🙂')">사용</button>
+          </div>
+
+          <div class="benefit-item">
+            <div class="benefit-emoji">☕</div>
+            <div class="benefit-content">
+              <div class="benefit-name">근처 카페 할인</div>
+              <div class="benefit-detail">해안 인증 시 10% 할인</div>
+            </div>
+            <button class="benefit-button" onclick="alert('데모 화면입니다 🙂')">사용</button>
+          </div>
+
+          <div class="benefit-item">
+            <div class="benefit-emoji">🎟</div>
+            <div class="benefit-content">
+              <div class="benefit-name">관광 프로그램</div>
+              <div class="benefit-detail">해안 체험 무료 참여권</div>
+            </div>
+            <button class="benefit-button" onclick="alert('데모 화면입니다 🙂')">사용</button>
+          </div>
+        </div>
+
+        <div class="rewards-footer">
+          <div class="next-reward">다음 리워드까지 <strong id="rewardLeftBig">0P</strong> 남았어요</div>
+          <button id="goARFromReward" class="action-button">
+            <span>📸</span>
+            <span>미래 예측 보기 (AR)</span>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===================== 모달: 내 패스포트 ===================== -->
+  <div id="passportModal" class="modal" aria-hidden="true">
+    <div class="modalSheet">
+      <div class="modalTopBar">
+        <div class="modalTopTitle">내 패스포트</div>
+        <button id="closePassport" class="closeBtn" aria-label="닫기">✕</button>
+      </div>
+
+      <div class="modalScroll">
+        <div class="page-header">
+          <div class="page-title">내 패스포트</div>
+          <div class="page-subtitle">해안 안전을 함께 지켜온<br/>나의 참여 기록입니다</div>
+        </div>
+
+        <div class="level-card">
+          <div class="level-icon">🏖️</div>
+          <div id="passportLevelText" class="level-text">Lv.1 해안 새싹</div>
+          <div id="passportLevelDesc" class="level-desc">꾸준한 참여로 안전한 해안을 만들어가고 있어요</div>
+        </div>
+
+        <div class="section-label">누적 참여 기록</div>
+
+        <div class="content-section">
+          <div class="stats-grid">
+            <div class="stat-box">
+              <div class="stat-name">방문한 해안</div>
+              <div id="statVisited" class="stat-number">0곳</div>
+            </div>
+            <div class="stat-box">
+              <div class="stat-name">참여한 인증</div>
+              <div id="statUploads" class="stat-number">0회</div>
+            </div>
+            <div class="stat-box">
+              <div class="stat-name">누적 참여 일수</div>
+              <div id="statDays" class="stat-number">0일</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="progress-card">
+          <div class="progress-label">다음 레벨까지</div>
+          <div class="progress-track">
+            <div id="passportProgressFill" class="progress-bar-fill"></div>
+          </div>
+          <div id="passportProgressInfo" class="progress-info">0회 참여 더 필요 (0% 달성)</div>
+        </div>
       </div>
     </div>
   </div>
@@ -632,12 +1071,19 @@
 
       localStorage.setItem("myPoint", String(myPoint));
       localStorage.setItem("myUploadCount", String(uploadCount));
+
+      // 모달에도 반영
+      const big = document.getElementById("rewardPointBig");
+      const leftBig = document.getElementById("rewardLeftBig");
+      if (big) big.textContent = `${myPoint}P`;
+      if (leftBig) leftBig.textContent = `${left}P`;
     }
 
     function addPoint(amount) {
       myPoint = Math.min(MAX_POINT, myPoint + amount);
       uploadCount += 1;
       updateRewardUI();
+      updatePassportUI();
       showToast(`+${amount}P`);
     }
 
@@ -749,7 +1195,7 @@
     const waterFill = document.getElementById("waterFill");
     const waterLabel = document.getElementById("waterLabel");
 
-    // ✅ 요청 반영: 5년 0.5m / 10년 0.7m
+    // 5년 0.5m / 10년 0.7m
     const scenarios = {
       y5:  { meter: 0.5, percent: 62, text: "✅ 5년 뒤(협재): 일부 구간 침수 가능성 증가\n예상 수위: 0.5m" },
       y10: { meter: 0.7, percent: 45, text: "⚠️ 10년 뒤(협재): 침수 범위 확대 가능성\n예상 수위: 0.7m" }
@@ -847,6 +1293,326 @@
     startARBtn.addEventListener("click", startAR);
     stopARBtn.addEventListener("click", stopAR);
     window.addEventListener("beforeunload", () => stopAR());
+
+    // ===================== 모달: 열기/닫기 =====================
+    const rewardDockBtn = document.getElementById("rewardDockBtn");
+    const rewardModal = document.getElementById("rewardModal");
+    const closeReward = document.getElementById("closeReward");
+
+    const passportHome = document.getElementById("passportHome");
+    const passportModal = document.getElementById("passportModal");
+    const closePassport = document.getElementById("closePassport");
+
+    function openModal(modalEl){
+      modalEl.classList.add("show");
+      modalEl.setAttribute("aria-hidden","false");
+      document.body.style.overflow = "hidden";
+    }
+    function closeModal(modalEl){
+      modalEl.classList.remove("show");
+      modalEl.setAttribute("aria-hidden","true");
+      document.body.style.overflow = "";
+    }
+
+    rewardDockBtn.addEventListener("click", () => {
+      updateRewardUI();
+      openModal(rewardModal);
+    });
+    closeReward.addEventListener("click", () => closeModal(rewardModal));
+    rewardModal.addEventListener("click", (e) => { if(e.target === rewardModal) closeModal(rewardModal); });
+
+    passportHome.addEventListener("click", () => {
+      updatePassportUI();
+      openModal(passportModal);
+    });
+    closePassport.addEventListener("click", () => closeModal(passportModal));
+    passportModal.addEventListener("click", (e) => { if(e.target === passportModal) closeModal(passportModal); });
+
+    // 모달에서 AR 바로가기
+    document.getElementById("goARFromReward").addEventListener("click", () => {
+      closeModal(rewardModal);
+      // AR 패널 열기
+      if (predictPanel.style.display !== "block") {
+        togglePanel(predictPanel);
+      }
+      // 살짝 스크롤
+      setTimeout(() => {
+        btnPredict.scrollIntoView({behavior:"smooth", block:"start"});
+      }, 120);
+    });
+
+    // ESC로 닫기(PC)
+    window.addEventListener("keydown", (e) => {
+      if(e.key === "Escape"){
+        if(rewardModal.classList.contains("show")) closeModal(rewardModal);
+        if(passportModal.classList.contains("show")) closeModal(passportModal);
+      }
+    });
+
+    // ===================== 패스포트: 레벨/통계 계산(데모) =====================
+    function getLevelInfo(count){
+      // 업로드 횟수 기반 레벨(발표용 로직)
+      if(count >= 10) return { lv: 4, name: "해안 수호자", icon: "🛡️", need: 15, base: 10 };
+      if(count >= 6)  return { lv: 3, name: "해안 관찰자", icon: "🏖️", need: 10, base: 6 };
+      if(count >= 3)  return { lv: 2, name: "해안 탐험가", icon: "🧭", need: 6,  base: 3 };
+      return          { lv: 1, name: "해안 새싹", icon: "🌱", need: 3,  base: 0 };
+    }
+
+    function updatePassportUI(){
+      const info = getLevelInfo(uploadCount);
+      const nextNeed = Math.max(0, info.need - uploadCount);
+      const denom = (info.need - info.base) || 1;
+      const numer = Math.max(0, uploadCount - info.base);
+      const pct = Math.min(100, Math.round((numer / denom) * 100));
+
+      // 홈 카드 서브텍스트
+      const passportHomeSub = document.getElementById("passportHomeSub");
+      passportHomeSub.textContent = `Lv.${info.lv} ${info.name} · 인증 ${uploadCount}회`;
+
+      // 모달 텍스트
+      document.querySelector("#passportModal .level-icon").textContent = info.icon;
+      document.getElementById("passportLevelText").textContent = `Lv.${info.lv} ${info.name}`;
+      document.getElementById("passportLevelDesc").textContent = "꾸준한 참여로 안전한 해안을 만들어가고 있어요";
+
+      // 통계(발표용: 업로드 기반으로 자연스러운 값 생성)
+      const visited = Math.max(1, Math.min(12, Math.floor(uploadCount / 2) + 1));
+      const days = Math.max(1, 7 + uploadCount * 2);
+
+      document.getElementById("statVisited").textContent = `${visited}곳`;
+      document.getElementById("statUploads").textContent = `${uploadCount}회`;
+      document.getElementById("statDays").textContent = `${days}일`;
+
+      document.getElementById("passportProgressFill").style.width = pct + "%";
+      document.getElementById("passportProgressInfo").textContent =
+        `${nextNeed}회 참여 더 필요 (${pct}% 달성)`;
+    }
+
+    updatePassportUI();
+
+    // ===================== 관리자 모드 (제목 3탭 → 코드 99999) =====================
+const appTitle = document.getElementById("appTitle");
+
+const adminCodeModal = document.getElementById("adminCodeModal");
+const adminModal = document.getElementById("adminModal");
+
+const closeAdminCode = document.getElementById("closeAdminCode");
+const adminCodeCancel = document.getElementById("adminCodeCancel");
+const adminCodeSubmit = document.getElementById("adminCodeSubmit");
+const adminCodeInput = document.getElementById("adminCodeInput");
+const adminCodeMsg = document.getElementById("adminCodeMsg");
+
+const closeAdmin = document.getElementById("closeAdmin");
+const adminCloseAll = document.getElementById("adminCloseAll");
+const adminResetMyReward = document.getElementById("adminResetMyReward");
+
+const adminReports = document.getElementById("adminReports");
+
+let tapCount = 0;
+let tapTimer = null;
+
+function openModalOnly(modalEl){
+  modalEl.classList.add("show");
+  modalEl.setAttribute("aria-hidden","false");
+  document.body.style.overflow = "hidden";
+}
+function closeModalOnly(modalEl){
+  modalEl.classList.remove("show");
+  modalEl.setAttribute("aria-hidden","true");
+  document.body.style.overflow = "";
+}
+
+function openAdminCode(){
+  adminCodeMsg.style.display = "none";
+  adminCodeInput.value = "";
+  openModalOnly(adminCodeModal);
+  setTimeout(() => adminCodeInput.focus(), 60);
+}
+
+function openAdminDashboard(){
+  // 관리자 화면에 현재 값 반영(데모)
+  // 업로드 횟수를 "제보 건수"처럼 보여줌
+  const count = Number(localStorage.getItem("myUploadCount") || "0");
+  if (adminReports) adminReports.textContent = String(count);
+  openModalOnly(adminModal);
+}
+
+function closeAdminCodeModal(){ closeModalOnly(adminCodeModal); }
+function closeAdminModal(){ closeModalOnly(adminModal); }
+
+// 제목 3번 탭 감지 (모바일 대응: click이면 충분)
+appTitle.addEventListener("click", () => {
+  tapCount += 1;
+
+  if (tapTimer) clearTimeout(tapTimer);
+  tapTimer = setTimeout(() => { tapCount = 0; }, 900); // 0.9초 내 3번
+
+  if (tapCount >= 3) {
+    tapCount = 0;
+    openAdminCode();
+  }
+});
+
+// 코드 확인
+adminCodeSubmit.addEventListener("click", () => {
+  const code = (adminCodeInput.value || "").trim();
+  if (code === "99999") {
+    closeAdminCodeModal();
+    openAdminDashboard();
+  } else {
+    adminCodeMsg.style.display = "block";
+  }
+});
+
+adminCodeInput.addEventListener("keydown", (e) => {
+  if (e.key === "Enter") adminCodeSubmit.click();
+});
+
+// 닫기들
+closeAdminCode.addEventListener("click", closeAdminCodeModal);
+adminCodeCancel.addEventListener("click", closeAdminCodeModal);
+adminCodeModal.addEventListener("click", (e) => { if(e.target === adminCodeModal) closeAdminCodeModal(); });
+
+closeAdmin.addEventListener("click", closeAdminModal);
+adminCloseAll.addEventListener("click", closeAdminModal);
+adminModal.addEventListener("click", (e) => { if(e.target === adminModal) closeAdminModal(); });
+
+// 관리자 기능(데모): 내 리워드 초기화
+adminResetMyReward.addEventListener("click", () => {
+  localStorage.setItem("myPoint", "0");
+  localStorage.setItem("myUploadCount", "0");
+
+  // 너 코드에 이미 있는 업데이트 함수가 있으면 그대로 호출됨
+  if (typeof updateRewardUI === "function") updateRewardUI();
+  if (typeof updatePassportUI === "function") updatePassportUI();
+
+  alert("내 리워드가 초기화되었습니다 (데모).");
+  // 관리자 화면 숫자도 갱신
+  if (adminReports) adminReports.textContent = "0";
+});
+
   </script>
+
+<!-- ===================== 관리자 코드 입력 모달 ===================== -->
+<div id="adminCodeModal" class="modal" aria-hidden="true">
+  <div class="modalSheet" style="height:auto; max-height: 78vh;">
+    <div class="modalTopBar">
+      <div class="modalTopTitle">관리자 모드</div>
+      <button id="closeAdminCode" class="closeBtn" aria-label="닫기">✕</button>
+    </div>
+
+    <div class="modalScroll" style="padding: 14px;">
+      <div style="background:#fff; border:1px solid #e5e7eb; border-radius:16px; padding:14px;">
+        <div style="font-weight:900; font-size:14px; color:#111827; margin-bottom:8px;">
+          관리자 전용 코드를 입력해주세요
+        </div>
+
+        <input id="adminCodeInput" inputmode="numeric" placeholder="예: 99999"
+               style="width:100%; padding:12px 12px; border-radius:12px; border:1px solid #e5e7eb; font-size:14px; outline:none;">
+
+        <div id="adminCodeMsg" style="margin-top:10px; font-size:12px; font-weight:800; color:#ef4444; display:none;">
+          코드가 올바르지 않습니다.
+        </div>
+
+        <div style="display:flex; gap:10px; margin-top:12px;">
+          <button id="adminCodeSubmit" class="uploadBtn" style="flex:1;">확인</button>
+          <button id="adminCodeCancel" class="ghostBtn" style="flex:1;">취소</button>
+        </div>
+      </div>
+
+      <p class="hint" style="margin-top:10px;">
+        * 제목을 연속 3번 누르면 관리자 모드로 진입합니다.
+      </p>
+    </div>
+  </div>
+</div>
+
+<!-- ===================== 관리자 대시보드 모달 ===================== -->
+<div id="adminModal" class="modal" aria-hidden="true">
+  <div class="modalSheet">
+    <div class="modalTopBar">
+      <div class="modalTopTitle">관리자 대시보드</div>
+      <button id="closeAdmin" class="closeBtn" aria-label="닫기">✕</button>
+    </div>
+
+    <div class="modalScroll">
+      <!-- (첨부 파일의 B2B 관리 대시보드 느낌) -->
+      <div class="page-header">
+        <div class="page-title">📊 해안 위험 모니터링 (관리자)</div>
+        <div class="page-subtitle">시민 제보/이용 현황 기반으로<br/>우선 점검 구역을 확인합니다</div>
+      </div>
+
+      <div class="content-section">
+        <div class="section-label">지점 요약</div>
+
+        <div class="stat-box" style="margin-bottom:10px;">
+          <div class="stat-name">선택 지점</div>
+          <div class="stat-number"><span id="adminSpot">협재</span></div>
+        </div>
+
+        <div class="stat-box" style="margin-bottom:10px;">
+          <div class="stat-name">현재 위험도</div>
+          <div class="stat-number">
+            <span style="display:inline-block; padding:4px 10px; border-radius:8px; font-size:12px; font-weight:900; background:#fff3e0; color:#f57c00;">
+              상승
+            </span>
+          </div>
+        </div>
+
+        <div class="stat-box">
+          <div class="stat-name">누적 제보(데모)</div>
+          <div class="stat-number"><span id="adminReports">0</span>건</div>
+        </div>
+      </div>
+
+      <div class="content-section">
+        <div class="section-label">시민 이용 현황</div>
+
+        <div style="margin-bottom:14px;">
+          <div style="font-size:12px; color:#666; margin-bottom:6px;">최근 7일 방문 횟수</div>
+          <div style="background:#f0f0f0; height:6px; border-radius:3px; overflow:hidden;">
+            <div id="barVisit" style="height:100%; width:78%; background:#666; border-radius:3px;"></div>
+          </div>
+        </div>
+
+        <div style="margin-bottom:14px;">
+          <div style="font-size:12px; color:#666; margin-bottom:6px;">참여 인증 수</div>
+          <div style="background:#f0f0f0; height:6px; border-radius:3px; overflow:hidden;">
+            <div id="barJoin" style="height:100%; width:62%; background:#666; border-radius:3px;"></div>
+          </div>
+        </div>
+
+        <div style="margin-bottom:2px;">
+          <div style="font-size:12px; color:#666; margin-bottom:6px;">체류 밀도</div>
+          <div style="background:#f0f0f0; height:6px; border-radius:3px; overflow:hidden;">
+            <div id="barStay" style="height:100%; width:86%; background:#666; border-radius:3px;"></div>
+          </div>
+        </div>
+
+        <div style="margin-top:16px; padding:14px; background:#fff8e1; border-radius:10px; border-left:3px solid #ffc107;">
+          <div style="font-size:13px; color:#f57c00; font-weight:900; margin-bottom:4px;">
+            ⚠️ 이용 밀도 대비 위험도 상승 중
+          </div>
+          <div style="font-size:12px; color:#888;">
+            우선 점검이 권장됩니다
+          </div>
+        </div>
+      </div>
+
+      <div class="content-section">
+        <div class="section-label">관리자 기능(데모)</div>
+
+        <div style="display:flex; gap:10px; flex-wrap:wrap;">
+          <button id="adminResetMyReward" class="ghostBtn">내 리워드 초기화</button>
+          <button id="adminCloseAll" class="uploadBtn">닫기</button>
+        </div>
+
+        <p class="hint" style="margin-top:10px;">
+          * 발표용 시안: 실제 운영에서는 지자체/관리자 계정으로 접근합니다.
+        </p>
+      </div>
+    </div>
+  </div>
+</div>
+
 </body>
 </html>
