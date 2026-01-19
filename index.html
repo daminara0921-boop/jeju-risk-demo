@@ -123,9 +123,6 @@
     .guide { font-size: 12px; color: #4b5563; margin: 0 0 12px 0; line-height: 1.4; }
     .hint { font-size: 12px; color: #6b7280; margin: 8px 0 0 0; }
 
-    .fileBox { display: flex; gap: 10px; align-items: center; flex-wrap: wrap; }
-    input[type="file"] { font-size: 12px; }
-
     .uploadBtn {
       padding: 10px 12px;
       border-radius: 12px;
@@ -287,6 +284,7 @@
       font-size: 12px;
       color: #374151;
       line-height: 1.45;
+      white-space: pre-line;
     }
 
     /* AR */
@@ -435,7 +433,7 @@
       align-items: center;
     }
 
-    /* ====== 홈에 들어갈 '내 패스포트' 카드(클릭) ====== */
+    /* ====== 홈에 들어갈 '프로필' 카드(클릭) ====== */
     .passportHomeCard{
       display:flex;
       align-items:center;
@@ -490,7 +488,7 @@
       flex: 0 0 auto;
     }
 
-    /* ====== 모달(리워드/패스포트/관리자) ====== */
+    /* ====== 모달(리워드/프로필/관리자) ====== */
     .modal {
       position: fixed;
       inset: 0;
@@ -540,7 +538,7 @@
       padding-bottom: 16px;
     }
 
-    /* ====== 시안 기반 리워드/패스포트 컴포넌트(모달 안) ====== */
+    /* ====== 시안 기반 리워드/프로필 컴포넌트(모달 안) ====== */
     .page-header {
       background: white;
       padding: 18px 16px;
@@ -665,7 +663,7 @@
       gap: 8px;
     }
 
-    /* passport (modal) */
+    /* profile (modal) */
     .level-icon {
       width: 68px;
       height: 68px;
@@ -737,194 +735,21 @@
       line-height: 1.35;
     }
 
-    /* ===== 관리자(B2B) 대시보드 스타일 ===== */
-    .adminWrap { background: #f4f5f7; }
-    .adminHeader {
-      background: white;
-      padding: 18px 16px;
-      border-bottom: 1px solid #e8e8e8;
-    }
-    .adminHeader .title {
-      font-size: 18px;
-      font-weight: 900;
-      color: #1a1a1a;
-      margin-bottom: 6px;
-    }
-    .adminHeader .sub {
-      font-size: 13px;
-      color: #666;
-      line-height: 1.45;
-    }
-
-    .dashboard-frame {
-      background: white;
-      margin: 12px;
-      border-radius: 16px;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.04);
-      overflow: hidden;
-    }
-
-    .dashboard-grid {
-      display: grid;
-      grid-template-columns: 1.15fr 0.85fr;
-      gap: 1px;
-      background: #e8e8e8;
-      height: 520px;
-    }
-
-    .map-section {
-      background: white;
-      padding: 14px;
+    /* ===== 촬영(바로 카메라 캡쳐) ===== */
+    .capFrame {
       position: relative;
-    }
-    .map-container {
       width: 100%;
-      height: 100%;
-      background: #e3f2e1;
-      border-radius: 12px;
-      position: relative;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      border: 1px solid #d0d0d0;
+      height: min(58vh, 520px);
+      background: #111827;
     }
-    .map-text {
-      font-size: 22px;
-      font-weight: 900;
-      color: #1a1a1a;
-      letter-spacing: 4px;
-    }
-
-    .status-dot {
-      position: absolute;
-      width: 14px;
-      height: 14px;
-      border-radius: 50%;
-      border: 2px solid white;
-      box-shadow: 0 2px 6px rgba(0,0,0,0.2);
-    }
-    .dot-green { background: #4caf50; top: 25%; left: 35%; }
-    .dot-purple { background: #9c27b0; top: 20%; right: 20%; }
-    .dot-red { background: #f44336; top: 35%; right: 12%; }
-    .dot-green2 { background: #4caf50; bottom: 30%; left: 25%; }
-
-    .adminLegend {
-      position: absolute;
-      bottom: 14px;
-      right: 14px;
-      background: white;
-      padding: 10px 12px;
-      border-radius: 10px;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.10);
-    }
-    .adminLegend .legend-title {
-      font-size: 12px;
-      color: #666;
-      margin-bottom: 8px;
-      font-weight: 900;
-    }
-    .adminLegend .legend-items {
-      display: flex;
-      gap: 10px;
-    }
-    .adminLegend .legend-item {
-      display: flex;
-      align-items: center;
-      gap: 6px;
-      font-size: 12px;
-      color: #111827;
-      font-weight: 800;
-    }
-    .adminLegend .legend-dot {
-      width: 10px;
-      height: 10px;
-      border-radius: 50%;
-    }
-
-    .info-section {
-      background: white;
-      display: flex;
-      flex-direction: column;
-      overflow-y: auto;
-    }
-    .info-header {
-      padding: 14px;
-      border-bottom: 1px solid #e8e8e8;
-    }
-    .info-title {
-      font-size: 16px;
-      font-weight: 900;
-      color: #1a1a1a;
-      margin-bottom: 4px;
-    }
-    .info-subtitle {
-      font-size: 12px;
-      color: #888;
-    }
-
-    .info-block {
-      padding: 14px;
-      border-bottom: 1px solid #e8e8e8;
-    }
-    .block-title {
-      font-size: 13px;
-      font-weight: 900;
-      color: #1a1a1a;
-      margin-bottom: 12px;
-    }
-    .info-item {
-      display: flex;
-      justify-content: space-between;
-      gap: 10px;
-      margin-bottom: 10px;
-    }
-    .info-key {
-      font-size: 12px;
-      color: #888;
-      font-weight: 800;
-    }
-    .info-val {
-      font-size: 12px;
-      font-weight: 900;
-      color: #1a1a1a;
-    }
-
-    .badge-warning {
-      display: inline-block;
-      padding: 4px 10px;
-      border-radius: 8px;
-      font-size: 12px;
-      font-weight: 900;
-      background: #fff3e0;
-      color: #f57c00;
-    }
-
-    .chart-row { margin-bottom: 12px; }
-    .chart-title { font-size: 12px; color: #666; margin-bottom: 6px; font-weight: 800; }
-    .chart-bg { background: #f0f0f0; height: 6px; border-radius: 3px; overflow: hidden; }
-    .chart-value { height: 100%; background: #666; border-radius: 3px; }
-
-    .alert-box {
-      margin-top: 12px;
-      padding: 12px;
-      background: #fff8e1;
-      border-radius: 10px;
-      border-left: 3px solid #ffc107;
-    }
-    .alert-text { font-size: 13px; color: #f57c00; font-weight: 900; margin-bottom: 4px; }
-    .alert-sub { font-size: 12px; color: #888; }
-
-    .adminCodeCard{
-      background:#fff;
-      border:1px solid #e5e7eb;
-      border-radius:16px;
-      padding:14px;
-    }
-    .adminCodeTitle{
-      font-weight: 900;
-      font-size: 14px;
-      color:#111827;
-      margin-bottom: 8px;
+    .capFrame video{
+      position:absolute;
+      inset:0;
+      width:100%;
+      height:100%;
+      object-fit:cover;
+      display:block;
+      background:#111827;
     }
   </style>
 </head>
@@ -939,12 +764,12 @@
       </p>
     </div>
 
-    <!-- ✅ 홈: 내 패스포트 카드 (제목과 지도 사이) -->
-    <div id="passportHome" class="card passportHomeCard" role="button" aria-label="내 패스포트 열기">
+    <!-- ✅ 홈: 프로필 카드 (제목과 지도 사이) -->
+    <div id="passportHome" class="card passportHomeCard" role="button" aria-label="프로필 열기">
       <div class="passportLeft">
-        <div class="passportIcon">🪪</div>
+        <div class="passportIcon">👤</div>
         <div class="passportText">
-          <p class="passportTitle">내 패스포트</p>
+          <p class="passportTitle">프로필</p>
           <div id="passportHomeSub" class="passportSub">참여 기록과 레벨을 확인해요</div>
         </div>
       </div>
@@ -998,13 +823,51 @@
           📌 <b>돌 장식이 화면 왼쪽 아래</b>에 위치하도록 촬영해주세요.
         </div>
 
+        <!-- ✅ 업로드(파일) 제거 → 바로 촬영 -->
         <p class="guide" style="margin-top:12px;">
-          샘플을 확인한 뒤, 사진을 선택하고 업로드하면 <b>+10P</b>가 적립됩니다.
+          샘플을 확인한 뒤, <b>파란 기준선</b>에 맞춰 <b>촬영</b>하면<br/>
+          즉시 업로드되고 <b>+10P</b>가 적립됩니다.
         </p>
 
-        <div class="fileBox">
-          <input id="fileInput" type="file" accept="image/*" />
-          <button id="submitUpload" class="uploadBtn">업로드(+10P)</button>
+        <div id="captureControls" class="arControls" style="display:none;">
+          <button id="startCaptureCam" class="uploadBtn">📷 촬영 모드 시작</button>
+          <button id="takeShot" class="uploadBtn" style="display:none;">📸 촬영(업로드)</button>
+          <button id="stopCaptureCam" class="ghostBtn" style="display:none;">종료</button>
+        </div>
+
+        <div id="captureStage" class="arWrap" style="display:none;">
+          <div class="capFrame">
+            <video id="capVideo" autoplay playsinline></video>
+
+            <!-- 파란 기준 라인 -->
+            <svg class="baseCurve" viewBox="0 0 200 80" preserveAspectRatio="none" aria-hidden="true">
+              <path d="M10,20
+                       Q40,20 55,40
+                       L70,60
+                       L190,60" />
+            </svg>
+
+            <div class="arHUD">
+              <b>촬영 가이드</b><br/>
+              파란 선(돌부리 기준)에 맞춘 뒤 촬영하세요
+            </div>
+          </div>
+
+          <div class="baseNote">
+            📌 <b>파란 기준선</b>에 맞춰 촬영 부탁드립니다.
+          </div>
+        </div>
+
+        <canvas id="capCanvas" style="display:none;"></canvas>
+
+        <div id="shotPreviewWrap" class="sampleWrap" style="display:none;">
+          <div class="sampleHeader">
+            <span>방금 촬영한 사진(업로드됨)</span>
+            <span class="badge">✅</span>
+          </div>
+          <div class="sampleBody">
+            <img id="shotPreviewImg" alt="촬영 미리보기" />
+          </div>
         </div>
 
         <div id="uploadStatus" class="status"></div>
@@ -1176,17 +1039,17 @@
     </div>
   </div>
 
-  <!-- ===================== 모달: 내 패스포트 ===================== -->
+  <!-- ===================== 모달: 프로필 ===================== -->
   <div id="passportModal" class="modal" aria-hidden="true">
     <div class="modalSheet">
       <div class="modalTopBar">
-        <div class="modalTopTitle">내 패스포트</div>
+        <div class="modalTopTitle">프로필</div>
         <button id="closePassport" class="closeBtn" aria-label="닫기">✕</button>
       </div>
 
       <div class="modalScroll">
         <div class="page-header">
-          <div class="page-title">내 패스포트</div>
+          <div class="page-title">프로필</div>
           <div class="page-subtitle">해안 안전을 함께 지켜온<br/>나의 참여 기록입니다</div>
         </div>
 
@@ -1235,10 +1098,11 @@
       </div>
 
       <div class="modalScroll" style="padding: 14px;">
-        <div class="adminCodeCard">
-          <div class="adminCodeTitle">관리자 전용 코드를 입력해주세요</div>
+        <div class="card" style="box-shadow:none; border:1px solid #e5e7eb;">
+          <div style="font-weight: 900; font-size: 14px; color:#111827; margin-bottom: 8px;">
+            관리자 전용 코드를 입력해주세요
+          </div>
 
-          <!-- ✅ (예:99999) 제거 -->
           <input id="adminCodeInput" inputmode="numeric" placeholder=""
                  style="width:100%; padding:12px 12px; border-radius:12px; border:1px solid #e5e7eb; font-size:14px; outline:none;">
 
@@ -1255,121 +1119,6 @@
         <p class="hint" style="margin-top:10px;">
           * 제목을 연속 3번 누르면 관리자 모드로 진입합니다.
         </p>
-      </div>
-    </div>
-  </div>
-
-  <!-- ===================== 관리자 대시보드 모달 ===================== -->
-  <div id="adminModal" class="modal" aria-hidden="true">
-    <div class="modalSheet">
-      <div class="modalTopBar">
-        <div class="modalTopTitle">관리자 대시보드</div>
-        <button id="closeAdmin" class="closeBtn" aria-label="닫기">✕</button>
-      </div>
-
-      <div class="modalScroll adminWrap">
-        <div class="adminHeader">
-          <div class="title">📊 해안 위험 모니터링 (관리자)</div>
-          <div class="sub">시민 제보/이용 현황 기반으로<br/>우선 점검 구역을 확인합니다</div>
-        </div>
-
-        <div class="dashboard-frame">
-          <div class="dashboard-grid">
-            <div class="map-section">
-              <div class="map-container">
-                <div class="map-text">JEJU</div>
-
-                <div class="status-dot dot-green"></div>
-                <div class="status-dot dot-purple"></div>
-                <div class="status-dot dot-red"></div>
-                <div class="status-dot dot-green2"></div>
-
-                <div class="adminLegend">
-                  <div class="legend-title">위험 등급</div>
-                  <div class="legend-items">
-                    <div class="legend-item">
-                      <div class="legend-dot" style="background:#4caf50;"></div><span>보통</span>
-                    </div>
-                    <div class="legend-item">
-                      <div class="legend-dot" style="background:#9c27b0;"></div><span>우려</span>
-                    </div>
-                    <div class="legend-item">
-                      <div class="legend-dot" style="background:#f44336;"></div><span>심각</span>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <div class="info-section">
-              <div class="info-header">
-                <div class="info-title">모니터링 대시보드</div>
-                <div class="info-subtitle">해양 구조물 실시간 상태</div>
-              </div>
-
-              <div class="info-block">
-                <div class="block-title">선택된 지점 정보</div>
-
-                <div class="info-item">
-                  <span class="info-key">선택 지점</span>
-                  <span class="info-val" id="adminSpot">협재</span>
-                </div>
-
-                <div class="info-item">
-                  <span class="info-key">최근 상태 변화</span>
-                  <span class="info-val">파손 위험 증가</span>
-                </div>
-
-                <div class="info-item">
-                  <span class="info-key">위험 추세</span>
-                  <span class="badge-warning">상승</span>
-                </div>
-
-                <div class="info-item" style="margin-bottom:0;">
-                  <span class="info-key">누적 제보(데모)</span>
-                  <span class="info-val"><span id="adminReports">0</span>건</span>
-                </div>
-              </div>
-
-              <div class="info-block">
-                <div class="block-title">시민 이용 현황</div>
-
-                <div class="chart-row">
-                  <div class="chart-title">최근 7일 방문 횟수</div>
-                  <div class="chart-bg"><div id="barVisit" class="chart-value" style="width:78%;"></div></div>
-                </div>
-
-                <div class="chart-row">
-                  <div class="chart-title">참여 인증 수</div>
-                  <div class="chart-bg"><div id="barJoin" class="chart-value" style="width:62%;"></div></div>
-                </div>
-
-                <div class="chart-row" style="margin-bottom:0;">
-                  <div class="chart-title">체류 밀도</div>
-                  <div class="chart-bg"><div id="barStay" class="chart-value" style="width:86%;"></div></div>
-                </div>
-
-                <div class="alert-box">
-                  <div class="alert-text">⚠️ 이용 밀도 대비 위험도 상승 중</div>
-                  <div class="alert-sub">우선 점검이 권장됩니다</div>
-                </div>
-              </div>
-
-              <div class="info-block" style="border-bottom:none;">
-                <div class="block-title">관리자 기능(데모)</div>
-                <div style="display:flex; gap:10px; flex-wrap:wrap;">
-                  <button id="adminResetMyReward" class="ghostBtn">내 리워드 초기화</button>
-                  <button id="adminCloseAll" class="uploadBtn">닫기</button>
-                </div>
-                <p class="hint" style="margin-top:10px;">
-                  * 발표용 시안: 실제 운영에서는 지자체/관리자 계정으로 접근합니다.
-                </p>
-              </div>
-
-            </div>
-          </div>
-        </div>
-
       </div>
     </div>
   </div>
@@ -1418,7 +1167,7 @@
       myPoint = Math.min(MAX_POINT, myPoint + amount);
       uploadCount += 1;
       updateRewardUI();
-      updatePassportUI();
+      updateProfileUI();
       showToast(`+${amount}P`);
     }
 
@@ -1466,6 +1215,88 @@
       sampleImg.style.display = "block";
     };
 
+    // ====== 촬영(바로 캡쳐) ======
+    const captureControls = document.getElementById("captureControls");
+    const startCaptureCamBtn = document.getElementById("startCaptureCam");
+    const takeShotBtn = document.getElementById("takeShot");
+    const stopCaptureCamBtn = document.getElementById("stopCaptureCam");
+
+    const captureStage = document.getElementById("captureStage");
+    const capVideo = document.getElementById("capVideo");
+    const capCanvas = document.getElementById("capCanvas");
+
+    const uploadStatus = document.getElementById("uploadStatus");
+
+    const shotPreviewWrap = document.getElementById("shotPreviewWrap");
+    const shotPreviewImg = document.getElementById("shotPreviewImg");
+
+    let capStream = null;
+
+    async function startCaptureCam() {
+      try {
+        capStream = await navigator.mediaDevices.getUserMedia({
+          video: { facingMode: "environment" },
+          audio: false
+        });
+
+        capVideo.srcObject = capStream;
+
+        captureStage.style.display = "block";
+        takeShotBtn.style.display = "inline-block";
+        stopCaptureCamBtn.style.display = "inline-block";
+        startCaptureCamBtn.style.display = "none";
+
+        showStatus(uploadStatus, "✅ 촬영 모드 준비 완료", "파란 기준선에 맞춘 뒤 촬영(업로드)을 눌러주세요.");
+      } catch (e) {
+        alert("카메라 권한이 필요해요. 브라우저 설정에서 카메라 허용 후 다시 시도해줘!");
+      }
+    }
+
+    function stopCaptureCam() {
+      if (capStream) {
+        capStream.getTracks().forEach(t => t.stop());
+        capStream = null;
+      }
+      captureStage.style.display = "none";
+      takeShotBtn.style.display = "none";
+      stopCaptureCamBtn.style.display = "none";
+      startCaptureCamBtn.style.display = "inline-block";
+    }
+
+    function takeShotAndUpload() {
+      if (!capStream) {
+        showStatus(uploadStatus, "⚠️ 카메라가 아직 시작되지 않았어요.", "촬영 모드 시작을 먼저 눌러주세요.");
+        return;
+      }
+
+      const w = capVideo.videoWidth || 1280;
+      const h = capVideo.videoHeight || 720;
+
+      capCanvas.width = w;
+      capCanvas.height = h;
+
+      const ctx = capCanvas.getContext("2d");
+      ctx.drawImage(capVideo, 0, 0, w, h);
+
+      const imgDataUrl = capCanvas.toDataURL("image/jpeg", 0.92);
+
+      // 미리보기
+      shotPreviewImg.src = imgDataUrl;
+      shotPreviewWrap.style.display = "block";
+
+      // 업로드 데모 처리
+      showStatus(uploadStatus, "⏳ 업로드 중...", "촬영한 사진을 업로드하고 있어요.");
+      setTimeout(() => {
+        addPoint(10);
+        showStatus(uploadStatus, "✅ 업로드 완료! +10P 지급", "제보가 반영되었습니다(데모).");
+      }, 650);
+    }
+
+    startCaptureCamBtn.addEventListener("click", startCaptureCam);
+    stopCaptureCamBtn.addEventListener("click", stopCaptureCam);
+    takeShotBtn.addEventListener("click", takeShotAndUpload);
+    window.addEventListener("beforeunload", () => stopCaptureCam());
+
     uploadLocSearch.addEventListener("click", () => {
       const v = uploadLocInput.value;
 
@@ -1473,6 +1304,10 @@
         showStatus(uploadLocStatus, "⚠️ 위치를 입력해 주세요.", "예: 협재");
         sampleWrap.style.display = "none";
         shotHint.style.display = "none";
+
+        captureControls.style.display = "none";
+        stopCaptureCam();
+        shotPreviewWrap.style.display = "none";
         return;
       }
 
@@ -1481,32 +1316,17 @@
         sampleWrap.style.display = "block";
         shotHint.style.display = "block";
         sampleImg.src = "sample-hyeopjae.jpg";
+
+        captureControls.style.display = "flex";
       } else {
         showStatus(uploadLocStatus, "⚠️ 현재는 ‘협재’만 시안 지원 중입니다.", "협재로 입력해 테스트해 주세요.");
         sampleWrap.style.display = "none";
         shotHint.style.display = "none";
+
+        captureControls.style.display = "none";
+        stopCaptureCam();
+        shotPreviewWrap.style.display = "none";
       }
-    });
-
-    // ====== 업로드(데모) ======
-    const fileInput = document.getElementById("fileInput");
-    const submitUpload = document.getElementById("submitUpload");
-    const uploadStatus = document.getElementById("uploadStatus");
-
-    submitUpload.addEventListener("click", () => {
-      const file = fileInput.files && fileInput.files[0];
-
-      if (!file) {
-        showStatus(uploadStatus, "⚠️ 사진 파일을 선택해 주세요.", "파일 선택 후 업로드 버튼을 눌러주세요.");
-        return;
-      }
-
-      showStatus(uploadStatus, "⏳ 업로드 중...", "잠시만 기다려주세요.");
-      setTimeout(() => {
-        addPoint(10);
-        showStatus(uploadStatus, "✅ 업로드 완료! +10P 지급", "제보가 반영되었습니다(데모).");
-        fileInput.value = "";
-      }, 900);
     });
 
     // ====== 예측(AR): 위치 검색 후 기능 열기 ======
@@ -1546,7 +1366,7 @@
       currentScenarioKey = key;
       const s = scenarios[key];
 
-      predictText.innerHTML = s.text.replaceAll("\n", "<br/>");
+      predictText.textContent = s.text;
       predictText.style.display = "block";
 
       waterLine.style.top = s.percent + "%";
@@ -1626,191 +1446,736 @@
     }
 
     startARBtn.addEventListener("click", startAR);
-    stopARBtn.addEventListener("click", stopAR);
+        stopARBtn.addEventListener("click", stopAR);
     window.addEventListener("beforeunload", () => stopAR());
 
-    // ===================== 모달: 열기/닫기 =====================
+    // ====== 내 리워드 모달 ======
     const rewardDockBtn = document.getElementById("rewardDockBtn");
     const rewardModal = document.getElementById("rewardModal");
     const closeReward = document.getElementById("closeReward");
 
-    const passportHome = document.getElementById("passportHome");
-    const passportModal = document.getElementById("passportModal");
-    const closePassport = document.getElementById("closePassport");
-
-    function openModal(modalEl){
+    function openModal(modalEl) {
       modalEl.classList.add("show");
-      modalEl.setAttribute("aria-hidden","false");
+      modalEl.setAttribute("aria-hidden", "false");
       document.body.style.overflow = "hidden";
     }
-    function closeModal(modalEl){
+
+    function closeModal(modalEl) {
       modalEl.classList.remove("show");
-      modalEl.setAttribute("aria-hidden","true");
+      modalEl.setAttribute("aria-hidden", "true");
       document.body.style.overflow = "";
     }
 
     rewardDockBtn.addEventListener("click", () => {
-      updateRewardUI();
+      updateRewardUI(); // 큰 숫자도 동기화
       openModal(rewardModal);
     });
+
     closeReward.addEventListener("click", () => closeModal(rewardModal));
-    rewardModal.addEventListener("click", (e) => { if(e.target === rewardModal) closeModal(rewardModal); });
+
+    // 바깥(딤) 클릭하면 닫기
+    rewardModal.addEventListener("click", (e) => {
+      if (e.target === rewardModal) closeModal(rewardModal);
+    });
+
+    // ====== 프로필(패스포트) 모달 ======
+    const passportHome = document.getElementById("passportHome");
+    const passportModal = document.getElementById("passportModal");
+    const closePassport = document.getElementById("closePassport");
 
     passportHome.addEventListener("click", () => {
-      updatePassportUI();
+      updateProfileUI();
       openModal(passportModal);
     });
+
     closePassport.addEventListener("click", () => closeModal(passportModal));
-    passportModal.addEventListener("click", (e) => { if(e.target === passportModal) closeModal(passportModal); });
+    passportModal.addEventListener("click", (e) => {
+      if (e.target === passportModal) closeModal(passportModal);
+    });
 
-    // 모달에서 AR 바로가기
-    document.getElementById("goARFromReward").addEventListener("click", () => {
+    // ====== 리워드 모달에서 AR로 이동 ======
+    const goARFromReward = document.getElementById("goARFromReward");
+    goARFromReward.addEventListener("click", () => {
       closeModal(rewardModal);
-      if (predictPanel.style.display !== "block") togglePanel(predictPanel);
-      setTimeout(() => {
-        btnPredict.scrollIntoView({behavior:"smooth", block:"start"});
-      }, 120);
+      // 예측 패널 열기
+      predictPanel.style.display = "block";
+      uploadPanel.style.display = "none";
+      // 입력칸에 협재 자동 입력(데모)
+      predictLocInput.value = "협재";
+      predictLocSearch.click();
+      // 스크롤 살짝 내려주기(선택)
+      window.scrollTo({ top: document.body.scrollHeight, behavior: "smooth" });
     });
 
-    // ESC로 닫기(PC)
-    window.addEventListener("keydown", (e) => {
-      if(e.key === "Escape"){
-        if(rewardModal.classList.contains("show")) closeModal(rewardModal);
-        if(passportModal.classList.contains("show")) closeModal(passportModal);
-        if(document.getElementById("adminCodeModal")?.classList.contains("show")) closeModal(document.getElementById("adminCodeModal"));
-        if(document.getElementById("adminModal")?.classList.contains("show")) closeModal(document.getElementById("adminModal"));
-      }
-    });
+    // ====== 프로필 UI 업데이트(포인트/업로드 기반) ======
+    function updateProfileUI() {
+      // 업로드 수 기준으로 레벨(데모)
+      // 0~1: Lv1 / 2~4: Lv2 / 5~8: Lv3 / 9+: Lv4
+      let level = 1;
+      if (uploadCount >= 9) level = 4;
+      else if (uploadCount >= 5) level = 3;
+      else if (uploadCount >= 2) level = 2;
 
-    // ===================== 패스포트: 레벨/통계 계산(데모) =====================
-    function getLevelInfo(count){
-      if(count >= 10) return { lv: 4, name: "해안 수호자", icon: "🛡️", need: 15, base: 10 };
-      if(count >= 6)  return { lv: 3, name: "해안 관찰자", icon: "🏖️", need: 10, base: 6 };
-      if(count >= 3)  return { lv: 2, name: "해안 탐험가", icon: "🧭", need: 6,  base: 3 };
-      return          { lv: 1, name: "해안 새싹", icon: "🌱", need: 3,  base: 0 };
-    }
+      const levelTextMap = {
+        1: "Lv.1 해안 새싹",
+        2: "Lv.2 해안 파수꾼",
+        3: "Lv.3 해안 지킴이",
+        4: "Lv.4 해안 마스터",
+      };
+      const levelDescMap = {
+        1: "첫 참여를 시작했어요. 계속 기록해보세요!",
+        2: "해안을 꾸준히 관찰하고 있어요.",
+        3: "데이터가 쌓이며 영향력이 커지고 있어요.",
+        4: "최고 레벨! 제주 해안의 든든한 파트너예요.",
+      };
 
-    function updatePassportUI(){
-      const info = getLevelInfo(uploadCount);
-      const nextNeed = Math.max(0, info.need - uploadCount);
-      const denom = (info.need - info.base) || 1;
-      const numer = Math.max(0, uploadCount - info.base);
-      const pct = Math.min(100, Math.round((numer / denom) * 100));
+      const passportLevelText = document.getElementById("passportLevelText");
+      const passportLevelDesc = document.getElementById("passportLevelDesc");
+      passportLevelText.textContent = levelTextMap[level];
+      passportLevelDesc.textContent = levelDescMap[level];
 
-      const passportHomeSub = document.getElementById("passportHomeSub");
-      passportHomeSub.textContent = `Lv.${info.lv} ${info.name} · 인증 ${uploadCount}회`;
-
-      document.querySelector("#passportModal .level-icon").textContent = info.icon;
-      document.getElementById("passportLevelText").textContent = `Lv.${info.lv} ${info.name}`;
-      document.getElementById("passportLevelDesc").textContent = "꾸준한 참여로 안전한 해안을 만들어가고 있어요";
-
-      const visited = Math.max(1, Math.min(12, Math.floor(uploadCount / 2) + 1));
-      const days = Math.max(1, 7 + uploadCount * 2);
-
-      document.getElementById("statVisited").textContent = `${visited}곳`;
+      // 통계(데모): 방문한 해안 = 업로드 위치 수라고 가정
+      const visited = Math.max(1, Math.min(uploadCount, 12)); // 데모값
+      document.getElementById("statVisited").textContent = `${uploadCount === 0 ? 0 : visited}곳`;
       document.getElementById("statUploads").textContent = `${uploadCount}회`;
+
+      // 참여 일수(데모): 업로드 수에 비례
+      const days = uploadCount === 0 ? 0 : Math.min(30, Math.ceil(uploadCount / 2));
       document.getElementById("statDays").textContent = `${days}일`;
 
-      document.getElementById("passportProgressFill").style.width = pct + "%";
+      // 다음 레벨까지 진행도(데모)
+      const nextNeedMap = { 1: 2, 2: 5, 3: 9, 4: 9 };
+      const nextTarget = nextNeedMap[level];
+      const progress = level === 4 ? 100 : Math.min(100, Math.round((uploadCount / nextTarget) * 100));
+
+      document.getElementById("passportProgressFill").style.width = progress + "%";
+
+      const remain = level === 4 ? 0 : Math.max(0, nextTarget - uploadCount);
       document.getElementById("passportProgressInfo").textContent =
-        `${nextNeed}회 참여 더 필요 (${pct}% 달성)`;
+        level === 4
+          ? "최고 레벨 달성 (100%)"
+          : `${remain}회 참여 더 필요 (${progress}% 달성)`;
+
+      // 홈 카드 서브텍스트도 업데이트
+      const passportHomeSub = document.getElementById("passportHomeSub");
+      passportHomeSub.textContent = `포인트 ${myPoint}P · 인증 ${uploadCount}회 · ${levelTextMap[level]}`;
     }
 
-    updatePassportUI();
+    // 초기 1회
+    updateProfileUI();
 
-    // ===================== 관리자 모드 (제목 3탭 → 코드 99999) =====================
-    (function initAdmin(){
-      const appTitle = document.getElementById("appTitle");
+    // ====== 관리자 모드: 제목 3번 연속 클릭 ======
+    const appTitle = document.getElementById("appTitle");
+    const adminCodeModal = document.getElementById("adminCodeModal");
+    const closeAdminCode = document.getElementById("closeAdminCode");
+    const adminCodeSubmit = document.getElementById("adminCodeSubmit");
+    const adminCodeCancel = document.getElementById("adminCodeCancel");
+    const adminCodeInput = document.getElementById("adminCodeInput");
+    const adminCodeMsg = document.getElementById("adminCodeMsg");
 
-      const adminCodeModal = document.getElementById("adminCodeModal");
-      const adminModal = document.getElementById("adminModal");
+    let titleTapCount = 0;
+    let titleTapTimer = null;
 
-      const closeAdminCode = document.getElementById("closeAdminCode");
-      const adminCodeCancel = document.getElementById("adminCodeCancel");
-      const adminCodeSubmit = document.getElementById("adminCodeSubmit");
-      const adminCodeInput = document.getElementById("adminCodeInput");
-      const adminCodeMsg = document.getElementById("adminCodeMsg");
+    function openAdminCode() {
+      adminCodeInput.value = "";
+      adminCodeMsg.style.display = "none";
+      openModal(adminCodeModal);
+      setTimeout(() => adminCodeInput.focus(), 50);
+    }
 
-      const closeAdmin = document.getElementById("closeAdmin");
-      const adminCloseAll = document.getElementById("adminCloseAll");
-      const adminResetMyReward = document.getElementById("adminResetMyReward");
+    appTitle.addEventListener("click", () => {
+      titleTapCount += 1;
 
-      const adminReports = document.getElementById("adminReports");
+      if (titleTapTimer) clearTimeout(titleTapTimer);
+      titleTapTimer = setTimeout(() => {
+        titleTapCount = 0;
+      }, 700);
 
-      if (!appTitle || !adminCodeModal || !adminModal) return;
-
-      function openAny(modalEl){
-        openModal(modalEl);
+      if (titleTapCount >= 3) {
+        titleTapCount = 0;
+        openAdminCode();
       }
-      function closeAny(modalEl){
-        closeModal(modalEl);
+    });
+
+    closeAdminCode.addEventListener("click", () => closeModal(adminCodeModal));
+    adminCodeCancel.addEventListener("click", () => closeModal(adminCodeModal));
+    adminCodeModal.addEventListener("click", (e) => {
+      if (e.target === adminCodeModal) closeModal(adminCodeModal);
+    });
+
+    // 관리자 코드(데모): 99999
+    adminCodeSubmit.addEventListener("click", () => {
+      const code = (adminCodeInput.value || "").trim();
+
+      if (code === "99999") {
+        closeModal(adminCodeModal);
+
+        document.body.classList.add("isAdmin");
+        appTitle.textContent = "제주 연안 위험 지도 (관리자)";
+
+        openAdminDashboard(); // ✅ 데스크톱 대시보드 창 열기
+      } else {
+        adminCodeMsg.style.display = "block";
+      }
+    });
+
+    // 엔터로도 확인
+    adminCodeInput.addEventListener("keydown", (e) => {
+      if (e.key === "Enter") adminCodeSubmit.click();
+    });
+
+    // ===== 관리자 대시보드 함수 =====
+    function openAdminDashboard() {
+      const W = 1920;
+      const H = 1200;
+
+      // 화면 중앙에 뜨게
+      const left = Math.max(0, Math.floor((screen.width - W) / 2));
+      const top = Math.max(0, Math.floor((screen.height - H) / 2));
+
+      const win = window.open(
+        "",
+        "AdminDashboard",
+        `width=${W},height=${H},left=${left},top=${top},resizable=yes,scrollbars=yes`
+      );
+
+      if (!win) {
+        alert("팝업이 차단되어 관리자 대시보드를 열 수 없어요. 브라우저에서 팝업 허용 후 다시 시도해줘!");
+        return;
       }
 
-      function openAdminCode(){
-        if (adminCodeMsg) adminCodeMsg.style.display = "none";
-        if (adminCodeInput) adminCodeInput.value = "";
-        openAny(adminCodeModal);
-        setTimeout(() => adminCodeInput && adminCodeInput.focus(), 80);
-      }
+      // ===== 데모 데이터(원하면 네 실제 데이터로 연결) =====
+      const points = [
+        { id: "P1", name: "협재 해변", x: 42, y: 40, risk: "보통", erosion_cm: 12, wave_m: 0.6, crowd: 320, reports: 18 },
+        { id: "P2", name: "애월 해안", x: 55, y: 28, risk: "우려", erosion_cm: 28, wave_m: 0.9, crowd: 510, reports: 32 },
+        { id: "P3", name: "성산 일출봉", x: 74, y: 44, risk: "심각", erosion_cm: 44, wave_m: 1.2, crowd: 880, reports: 61 },
+        { id: "P4", name: "중문 해안", x: 52, y: 66, risk: "보통", erosion_cm: 10, wave_m: 0.5, crowd: 260, reports: 9 },
+      ];
 
-      function openAdminDashboard(){
-        const count = Number(localStorage.getItem("myUploadCount") || "0");
-        if (adminReports) adminReports.textContent = String(count);
-        openAny(adminModal);
-      }
+      // 새 창에 HTML을 통째로 씀
+      win.document.open();
+      win.document.write(`<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>관리자 대시보드 | 제주 연안 위험 지도</title>
+  <style>
+    *{box-sizing:border-box;}
+    body{
+      margin:0;
+      font-family: -apple-system, BlinkMacSystemFont, "Apple SD Gothic Neo", "Segoe UI", Arial, sans-serif;
+      background:#f4f5f7;
+      color:#111827;
+    }
 
-      // ✅ 3탭 감지 (click + touchend 둘 다)
-      let tapCount = 0;
-      let lastTapAt = 0;
+    /* 1920x1200 데스크톱 규격 느낌 */
+    .wrap{
+      width: min(1920px, 100vw);
+      height: min(1200px, 100vh);
+      margin: 0 auto;
+      padding: 18px;
+      display:flex;
+      flex-direction:column;
+      gap: 14px;
+    }
 
-      function handleTap(){
-        const now = Date.now();
-        if (now - lastTapAt > 1000) tapCount = 0;
-        lastTapAt = now;
+    .topbar{
+      background:#fff;
+      border:1px solid #e5e7eb;
+      border-radius: 16px;
+      padding: 14px 16px;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      box-shadow: 0 6px 18px rgba(0,0,0,0.06);
+    }
+    .topLeft{display:flex; flex-direction:column; gap:3px;}
+    .title{font-size:18px; font-weight:900;}
+    .sub{font-size:12px; color:#6b7280;}
+    .topRight{display:flex; gap:10px; align-items:center;}
+    .pill{
+      background:#111827;
+      color:#fff;
+      border:none;
+      padding:10px 12px;
+      border-radius: 12px;
+      font-weight:900;
+      cursor:pointer;
+      font-size:12px;
+    }
+    .ghost{
+      background:#fff;
+      color:#111827;
+      border:1px solid #e5e7eb;
+      padding:10px 12px;
+      border-radius: 12px;
+      font-weight:900;
+      cursor:pointer;
+      font-size:12px;
+    }
 
-        tapCount += 1;
-        if (tapCount >= 3){
-          tapCount = 0;
-          openAdminCode();
-        }
-      }
+    /* 메인 그리드: 좌(지도) / 우(수치) */
+    .grid{
+      flex:1;
+      min-height: 0;
+      display:grid;
+      grid-template-columns: 1.25fr 1fr;
+      gap: 14px;
+    }
 
-      appTitle.addEventListener("click", handleTap, { passive: true });
-      appTitle.addEventListener("touchend", handleTap, { passive: true });
+    .card{
+      background:#fff;
+      border:1px solid #e5e7eb;
+      border-radius: 18px;
+      box-shadow: 0 6px 18px rgba(0,0,0,0.06);
+      overflow:hidden;
+      min-height: 0;
+    }
 
-      adminCodeSubmit?.addEventListener("click", () => {
-        const code = (adminCodeInput?.value || "").trim();
-        if (code === "99999"){
-          closeAny(adminCodeModal);
-          openAdminDashboard();
-        } else {
-          if (adminCodeMsg) adminCodeMsg.style.display = "block";
-        }
-      });
+    /* 좌측 지도 카드 */
+    .mapHead{
+      padding: 14px 16px;
+      border-bottom: 1px solid #e5e7eb;
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      gap:10px;
+    }
+    .mapHead .h{
+      font-size:14px; font-weight:900;
+    }
+    .mapHead .hint{
+      font-size:12px; color:#6b7280;
+    }
 
-      adminCodeInput?.addEventListener("keydown", (e) => {
-        if (e.key === "Enter") adminCodeSubmit?.click();
-      });
+    .mapBody{
+      height: calc(100% - 57px);
+      padding: 16px;
+      background: linear-gradient(180deg, #f9fafb, #f4f5f7);
+    }
 
-      closeAdminCode?.addEventListener("click", () => closeAny(adminCodeModal));
-      adminCodeCancel?.addEventListener("click", () => closeAny(adminCodeModal));
-      adminCodeModal.addEventListener("click", (e) => { if (e.target === adminCodeModal) closeAny(adminCodeModal); });
+    .jejuBoard{
+      width:100%;
+      height:100%;
+      border-radius: 16px;
+      border: 1px solid #e5e7eb;
+      background:#e8f6e7; /* 연두톤 */
+      position: relative;
+      overflow:hidden;
+    }
 
-      closeAdmin?.addEventListener("click", () => closeAny(adminModal));
-      adminCloseAll?.addEventListener("click", () => closeAny(adminModal));
-      adminModal.addEventListener("click", (e) => { if (e.target === adminModal) closeAny(adminModal); });
+    /* 제주도 실루엣(SVG) */
+    .jejuSvg{
+      position:absolute;
+      inset: 0;
+      width:100%;
+      height:100%;
+      opacity: 1;
+    }
 
-      adminResetMyReward?.addEventListener("click", () => {
-        localStorage.setItem("myPoint", "0");
-        localStorage.setItem("myUploadCount", "0");
+    /* 포인트(핀) */
+    .pin{
+      position:absolute;
+      width: 14px;
+      height: 14px;
+      border-radius: 999px;
+      border: 2px solid #fff;
+      box-shadow: 0 8px 16px rgba(0,0,0,0.18);
+      cursor:pointer;
+      transform: translate(-50%, -50%);
+    }
+    .pin[data-risk="보통"]{ background:#22c55e; }
+    .pin[data-risk="우려"]{ background:#a855f7; }
+    .pin[data-risk="심각"]{ background:#ef4444; }
 
-        updateRewardUI();
-        updatePassportUI();
+    .legend{
+      position:absolute;
+      right: 14px;
+      bottom: 14px;
+      background: rgba(255,255,255,0.92);
+      border: 1px solid #e5e7eb;
+      border-radius: 14px;
+      padding: 10px 12px;
+      font-size: 12px;
+      backdrop-filter: blur(8px);
+    }
+    .legend b{display:block; margin-bottom:8px; font-size:12px;}
+    .legendRow{display:flex; gap:10px; align-items:center; flex-wrap:wrap;}
+    .dot{width:10px; height:10px; border-radius:999px; display:inline-block;}
+    .dG{background:#22c55e;}
+    .dP{background:#a855f7;}
+    .dR{background:#ef4444;}
 
-        if (adminReports) adminReports.textContent = "0";
-        alert("내 리워드가 초기화되었습니다 (데모).");
-      });
-    })();
+    /* 우측 수치 카드 */
+    .infoHead{
+      padding: 14px 16px;
+      border-bottom: 1px solid #e5e7eb;
+    }
+    .infoHead .h{font-size:14px; font-weight:900;}
+    .infoHead .s{font-size:12px; color:#6b7280; margin-top:4px;}
+
+    .infoBody{
+      height: calc(100% - 68px);
+      overflow:auto;
+      padding: 14px;
+      display:flex;
+      flex-direction:column;
+      gap: 12px;
+    }
+
+    .block{
+      border:1px solid #e5e7eb;
+      border-radius: 16px;
+      background:#fff;
+      padding: 14px;
+    }
+    .blockTitle{
+      font-size:13px;
+      font-weight:900;
+      margin-bottom: 12px;
+    }
+
+    .row{
+      display:flex;
+      gap: 10px;
+      align-items:center;
+      justify-content:space-between;
+      margin-bottom: 10px;
+    }
+    .key{font-size:12px; color:#6b7280; font-weight:800;}
+    .val{font-size:12px; font-weight:900; color:#111827;}
+
+    .grid2{
+      display:grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+    }
+
+    .field{
+      display:flex;
+      flex-direction:column;
+      gap: 6px;
+    }
+    .label{
+      font-size:12px;
+      color:#6b7280;
+      font-weight:900;
+    }
+    input[type="number"], input[type="text"], select{
+      width: 100%;
+      padding: 12px 12px;
+      border-radius: 12px;
+      border: 1px solid #e5e7eb;
+      outline:none;
+      font-size: 13px;
+      font-weight: 900;
+      background:#fff;
+      color:#111827;
+    }
+
+    .saveRow{
+      display:flex;
+      gap: 10px;
+      margin-top: 12px;
+    }
+    .saveRow button{
+      flex:1;
+    }
+
+    .table{
+      width:100%;
+      border-collapse: collapse;
+      overflow:hidden;
+      border-radius: 12px;
+      border: 1px solid #e5e7eb;
+    }
+    .table th, .table td{
+      padding: 10px 10px;
+      border-bottom: 1px solid #e5e7eb;
+      font-size: 12px;
+    }
+    .table th{
+      text-align:left;
+      color:#6b7280;
+      font-weight: 900;
+      background:#f9fafb;
+    }
+    .table td{
+      font-weight: 800;
+      color:#111827;
+    }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <div class="topbar">
+      <div class="topLeft">
+        <div class="title">관리자 대시보드</div>
+        <div class="sub">해안 모니터링 지점 관리 · 수치 기반 편집(슬라이더 없음)</div>
+      </div>
+      <div class="topRight">
+        <button class="ghost" id="btnSync">앱 데이터 불러오기(데모)</button>
+        <button class="pill" id="btnClose">창 닫기</button>
+      </div>
+    </div>
+
+    <div class="grid">
+      <!-- 좌측: 제주도 지도 -->
+      <div class="card">
+        <div class="mapHead">
+          <div class="h">제주도 모니터링 맵</div>
+          <div class="hint">● 지점을 클릭하면 우측 수치 패널이 바뀜</div>
+        </div>
+
+        <div class="mapBody">
+          <div class="jejuBoard" id="jejuBoard">
+            <!-- 제주도 실루엣: 심플 SVG(필요시 path 교체) -->
+            <svg class="jejuSvg" viewBox="0 0 100 80" preserveAspectRatio="xMidYMid meet" aria-hidden="true">
+              <path d="M16,45
+                       C10,35 14,20 25,16
+                       C35,12 45,18 54,14
+                       C64,10 75,12 83,22
+                       C92,33 88,46 80,55
+                       C72,64 58,66 48,68
+                       C36,70 22,64 18,56
+                       C17,53 18,49 16,45 Z"
+                    fill="rgba(34,197,94,0.18)"
+                    stroke="rgba(17,24,39,0.55)"
+                    stroke-width="0.9" />
+              <!-- 섬 디테일(작은 도서) -->
+              <circle cx="12" cy="63" r="2.1" fill="rgba(17,24,39,0.15)"/>
+              <circle cx="90" cy="20" r="1.6" fill="rgba(17,24,39,0.15)"/>
+            </svg>
+
+            <!-- 핀은 JS로 삽입 -->
+            <div class="legend">
+              <b>위험 등급</b>
+              <div class="legendRow">
+                <span class="dot dG"></span><span>보통</span>
+                <span class="dot dP"></span><span>우려</span>
+                <span class="dot dR"></span><span>심각</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 우측: 수치 패널(슬라이더 X, 숫자/표) -->
+      <div class="card">
+        <div class="infoHead">
+          <div class="h">선택 지점 수치 편집</div>
+          <div class="s">오른쪽은 "실제 수치" 입력/표시 위주 (슬라이더 제거)</div>
+        </div>
+
+        <div class="infoBody">
+          <div class="block">
+            <div class="blockTitle">선택된 지점</div>
+            <div class="row">
+              <div class="key">지점명</div>
+              <div class="val" id="selName">-</div>
+            </div>
+            <div class="row">
+              <div class="key">지점 ID</div>
+              <div class="val" id="selId">-</div>
+            </div>
+          </div>
+
+          <div class="block">
+            <div class="blockTitle">위험/센서 수치(편집)</div>
+
+            <div class="grid2">
+              <div class="field">
+                <div class="label">위험 등급</div>
+                <select id="fRisk">
+                  <option value="보통">보통</option>
+                  <option value="우려">우려</option>
+                  <option value="심각">심각</option>
+                </select>
+              </div>
+
+              <div class="field">
+                <div class="label">침식량 (cm)</div>
+                <input id="fErosion" type="number" step="1" min="0" />
+              </div>
+
+              <div class="field">
+                <div class="label">파고 (m)</div>
+                <input id="fWave" type="number" step="0.1" min="0" />
+              </div>
+
+              <div class="field">
+                <div class="label">최근 7일 방문 수</div>
+                <input id="fCrowd" type="number" step="1" min="0" />
+              </div>
+
+              <div class="field">
+                <div class="label">제보(인증) 수</div>
+                <input id="fReports" type="number" step="1" min="0" />
+              </div>
+
+              <div class="field">
+                <div class="label">비고</div>
+                <input id="fMemo" type="text" placeholder="메모(선택)" />
+              </div>
+            </div>
+
+            <div class="saveRow">
+              <button class="ghost" id="btnReset">되돌리기</button>
+              <button class="pill" id="btnSave">저장(데모)</button>
+            </div>
+          </div>
+
+          <div class="block">
+            <div class="blockTitle">요약 테이블</div>
+            <table class="table" id="summaryTable">
+              <thead>
+                <tr>
+                  <th>항목</th>
+                  <th>값</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr><td>위험 등급</td><td id="tRisk">-</td></tr>
+                <tr><td>침식량 (cm)</td><td id="tErosion">-</td></tr>
+                <tr><td>파고 (m)</td><td id="tWave">-</td></tr>
+                <tr><td>최근 7일 방문</td><td id="tCrowd">-</td></tr>
+                <tr><td>제보(인증) 수</td><td id="tReports">-</td></tr>
+              </tbody>
+            </table>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+
+<script>
+  const points = ${JSON.stringify(points)};
+
+  const board = document.getElementById("jejuBoard");
+
+  const selName = document.getElementById("selName");
+  const selId = document.getElementById("selId");
+
+  const fRisk = document.getElementById("fRisk");
+  const fErosion = document.getElementById("fErosion");
+  const fWave = document.getElementById("fWave");
+  const fCrowd = document.getElementById("fCrowd");
+  const fReports = document.getElementById("fReports");
+  const fMemo = document.getElementById("fMemo");
+
+  const tRisk = document.getElementById("tRisk");
+  const tErosion = document.getElementById("tErosion");
+  const tWave = document.getElementById("tWave");
+  const tCrowd = document.getElementById("tCrowd");
+  const tReports = document.getElementById("tReports");
+
+  let selected = null;
+  let original = null;
+
+  function renderPins(){
+    // 기존 핀 제거
+    [...board.querySelectorAll(".pin")].forEach(el => el.remove());
+
+    points.forEach(p => {
+      const pin = document.createElement("div");
+      pin.className = "pin";
+      pin.dataset.id = p.id;
+      pin.dataset.risk = p.risk;
+      pin.title = p.name + " (" + p.risk + ")";
+
+      // x,y는 % 좌표(0~100)
+      pin.style.left = p.x + "%";
+      pin.style.top = p.y + "%";
+
+      pin.addEventListener("click", () => selectPoint(p.id));
+      board.appendChild(pin);
+    });
+  }
+
+  function fillRightPanel(p){
+    selName.textContent = p.name;
+    selId.textContent = p.id;
+
+    fRisk.value = p.risk;
+    fErosion.value = p.erosion_cm;
+    fWave.value = p.wave_m;
+    fCrowd.value = p.crowd;
+    fReports.value = p.reports;
+    fMemo.value = p.memo || "";
+
+    syncTable(p);
+  }
+
+  function syncTable(p){
+    tRisk.textContent = p.risk;
+    tErosion.textContent = String(p.erosion_cm);
+    tWave.textContent = String(p.wave_m);
+    tCrowd.textContent = String(p.crowd);
+    tReports.textContent = String(p.reports);
+  }
+
+  function selectPoint(id){
+    const p = points.find(x => x.id === id);
+    if(!p) return;
+
+    selected = p;
+    // 되돌리기용 백업
+    original = JSON.parse(JSON.stringify(p));
+
+    fillRightPanel(p);
+  }
+
+  function applyEditsToSelected(){
+    if(!selected) return;
+
+    selected.risk = fRisk.value;
+    selected.erosion_cm = Number(fErosion.value || 0);
+    selected.wave_m = Number(fWave.value || 0);
+    selected.crowd = Number(fCrowd.value || 0);
+    selected.reports = Number(fReports.value || 0);
+    selected.memo = (fMemo.value || "").trim();
+
+    syncTable(selected);
+    renderPins(); // 위험등급 바뀌면 색도 바뀜
+  }
+
+  // 입력 변화 즉시 테이블 반영(실수치 확인용)
+  [fRisk, fErosion, fWave, fCrowd, fReports, fMemo].forEach(el => {
+    el.addEventListener("input", applyEditsToSelected);
+  });
+
+  document.getElementById("btnSave").addEventListener("click", () => {
+    if(!selected) return alert("지점을 먼저 선택해 주세요.");
+    applyEditsToSelected();
+    alert("✅ 저장되었습니다(데모). 실제 저장은 서버/DB 연동 시 구현");
+  });
+
+  document.getElementById("btnReset").addEventListener("click", () => {
+    if(!selected || !original) return;
+    Object.assign(selected, JSON.parse(JSON.stringify(original)));
+    fillRightPanel(selected);
+    renderPins();
+  });
+
+  document.getElementById("btnClose").addEventListener("click", () => window.close());
+
+  document.getElementById("btnSync").addEventListener("click", () => {
+    alert("데모: 앱의 로컬스토리지/서버에서 데이터를 끌어오는 기능 자리입니다.");
+  });
+
+  renderPins();
+  // 첫 선택(기본)
+  selectPoint(points[0].id);
+<\/script>
+</body>
+</html>`);
+
+      win.document.close();
+      win.focus();
+    }
   </script>
 </body>
 </html>
+
