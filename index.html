@@ -1760,18 +1760,22 @@
       height:100%;
       border-radius: 16px;
       border: 1px solid #e5e7eb;
-      background:#e8f6e7; /* 연두톤 */
       position: relative;
       overflow:hidden;
     }
 
-    /* 제주도 실루엣(SVG) */
-    .jejuSvg{
+    .mapImg{
       position:absolute;
-      inset: 0;
+      inset:0;
       width:100%;
       height:100%;
-      opacity: 1;
+      object-fit: cover;
+      display:block;
+    }
+
+    .pinLayer{
+      position:absolute;
+      inset:0;
     }
 
     /* 포인트(핀) */
@@ -1930,25 +1934,9 @@
 
         <div class="mapBody">
           <div class="jejuBoard" id="jejuBoard">
-            <!-- 제주도 실루엣: 심플 SVG(필요시 path 교체) -->
-            <svg class="jejuSvg" viewBox="0 0 100 80" preserveAspectRatio="xMidYMid meet" aria-hidden="true">
-              <path d="M16,45
-                       C10,35 14,20 25,16
-                       C35,12 45,18 54,14
-                       C64,10 75,12 83,22
-                       C92,33 88,46 80,55
-                       C72,64 58,66 48,68
-                       C36,70 22,64 18,56
-                       C17,53 18,49 16,45 Z"
-                    fill="rgba(34,197,94,0.18)"
-                    stroke="rgba(17,24,39,0.55)"
-                    stroke-width="0.9" />
-              <!-- 섬 디테일(작은 도서) -->
-              <circle cx="12" cy="63" r="2.1" fill="rgba(17,24,39,0.15)"/>
-              <circle cx="90" cy="20" r="1.6" fill="rgba(17,24,39,0.15)"/>
-            </svg>
+            <img class="mapImg" src="jeju-risk-map.png" alt="Jeju Risk Map" />
+            <div class="pinLayer" id="pinLayer"></div>
 
-            <!-- 핀은 JS로 삽입 -->
             <div class="legend">
               <b>위험 등급</b>
               <div class="legendRow">
@@ -2054,6 +2042,7 @@
   const points = ${JSON.stringify(points)};
 
   const board = document.getElementById("jejuBoard");
+  const pinLayer = document.getElementById("pinLayer");
 
   const selName = document.getElementById("selName");
   const selId = document.getElementById("selId");
@@ -2076,7 +2065,7 @@
 
   function renderPins(){
     // 기존 핀 제거
-    [...board.querySelectorAll(".pin")].forEach(el => el.remove());
+    [...pinLayer.querySelectorAll(".pin")].forEach(el => el.remove());
 
     points.forEach(p => {
       const pin = document.createElement("div");
@@ -2090,7 +2079,7 @@
       pin.style.top = p.y + "%";
 
       pin.addEventListener("click", () => selectPoint(p.id));
-      board.appendChild(pin);
+      pinLayer.appendChild(pin);
     });
   }
 
