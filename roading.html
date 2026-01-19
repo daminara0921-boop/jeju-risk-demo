@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>제주 연안 위험 지도 - 안내</title>
+
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Apple SD Gothic Neo",
+                   "Segoe UI", Arial, sans-serif;
+      background: rgba(0, 0, 0, 0.55);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      padding: 16px;
+    }
+
+    .popup {
+      width: 100%;
+      max-width: 420px;
+      background: white;
+      border-radius: 20px;
+      overflow: hidden;
+      box-shadow: 0 20px 50px rgba(0,0,0,0.35);
+      animation: pop 0.25s ease-out;
+    }
+
+    @keyframes pop {
+      from { transform: translateY(16px); opacity: 0; }
+      to   { transform: translateY(0); opacity: 1; }
+    }
+
+    .content {
+      padding: 36px 28px 28px;
+    }
+
+    h1 {
+      font-size: 22px;
+      font-weight: 900;
+      color: #111827;
+      text-align: center;
+      margin-bottom: 10px;
+    }
+
+    .sub {
+      text-align: center;
+      font-size: 13px;
+      color: #6b7280;
+      margin-bottom: 26px;
+      line-height: 1.4;
+    }
+
+    .section {
+      background: #f9fafb;
+      border-radius: 14px;
+      padding: 20px;
+      margin-bottom: 18px;
+    }
+
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: white;
+      border: 1px solid #e5e7eb;
+      padding: 8px 14px;
+      border-radius: 999px;
+      font-size: 13px;
+      font-weight: 800;
+      color: #111827;
+      margin-bottom: 14px;
+    }
+
+    .dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: #22c55e;
+    }
+
+    .label {
+      font-size: 12px;
+      font-weight: 900;
+      color: #6b7280;
+      margin-bottom: 6px;
+    }
+
+    .text {
+      font-size: 14px;
+      color: #111827;
+      line-height: 1.6;
+      margin-bottom: 12px;
+    }
+
+    .warn {
+      background: #fff7ed;
+      border-left: 4px solid #fb923c;
+      padding: 14px;
+      border-radius: 10px;
+      font-size: 13px;
+      color: #9a3412;
+      font-weight: 800;
+      line-height: 1.5;
+    }
+
+    .footerBtn {
+      width: 100%;
+      border: none;
+      padding: 18px;
+      background: #111827;
+      color: white;
+      font-size: 15px;
+      font-weight: 900;
+      cursor: pointer;
+      border-radius: 0 0 20px 20px;
+    }
+
+    .footerBtn:hover { background: #000; }
+  </style>
+</head>
+
+<body>
+  <div class="popup">
+    <div class="content">
+      <h1>제주 연안 위험 지도</h1>
+      <div class="sub">
+        우리 모두 함께 만드는<br />
+        제주 해안 안전 모니터링
+      </div>
+
+      <div class="section">
+        <div class="badge">
+          <span class="dot"></span>
+          협재 해안
+        </div>
+
+        <div class="label">연안 침식이란?</div>
+        <div class="text">
+          파도와 해류, 기후 변화로 인해 해안의 모래와 암석이
+          점차 깎여 나가는 자연 현상입니다.
+        </div>
+
+        <div class="text">
+          제주도는 화산섬 특성상 모래층이 얕아 침식에 특히 취약하며,
+          최근 강한 태풍과 해수면 상승으로 위험이 가속화되고 있습니다.
+        </div>
+      </div>
+
+      <div class="warn">
+        ⚠️ 협재 해안은 연안 침식 위험이 높은 지역입니다.<br />
+        보행 시 주변 환경을 주의 깊게 살펴주세요.
+      </div>
+    </div>
+
+    <!-- ✅ 이 버튼을 눌러야만 포인트 적립 -->
+    <button class="footerBtn" onclick="closeAndNotify()">
+      안내 확인하고 닫기
+    </button>
+  </div>
+
+  <script>
+    function closeAndNotify() {
+      // 👉 메인 페이지에 “안내창 닫힘” 신호 전달
+      if (window.opener) {
+        window.opener.postMessage(
+          { type: "UPLOAD_INFO_CLOSED" },
+          "*"
+        );
+      }
+      window.close();
+    }
+  </script>
+</body>
+</html>
