@@ -1124,6 +1124,10 @@
   </div>
 
   <script>
+    // ===== 안전 가드 =====
+    window.pendingReward = false;
+    window.openPopupThenReward = window.openPopupThenReward || function () {};
+
     // ====== 리워드 ======
     const MAX_POINT = 100;
     const savedPoint = Number(localStorage.getItem("myPoint") || "0");
@@ -1338,7 +1342,8 @@
     takeShotBtn.addEventListener("click", takeShotAndUpload);
     window.addEventListener("beforeunload", () => stopCaptureCam());
 
-    uploadLocSearch.addEventListener("click", () => {
+    if (uploadLocSearch) {
+      uploadLocSearch.addEventListener("click", () => {
       const v = uploadLocInput.value;ㄴ
 
       if (!v.trim()) {
@@ -1369,6 +1374,7 @@
         shotPreviewWrap.style.display = "none";
       }
     });
+    }
 
     // ====== 예측(AR): 위치 검색 후 기능 열기 ======
     const predictLocInput = document.getElementById("predictLocInput");
