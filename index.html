@@ -1124,10 +1124,6 @@
   </div>
 
   <script>
-    // ===== 안전 가드 =====
-    window.pendingReward = false;
-    window.openPopupThenReward = window.openPopupThenReward || function () {};
-
     // ====== 리워드 ======
     const MAX_POINT = 100;
     const savedPoint = Number(localStorage.getItem("myPoint") || "0");
@@ -1342,39 +1338,27 @@
     takeShotBtn.addEventListener("click", takeShotAndUpload);
     window.addEventListener("beforeunload", () => stopCaptureCam());
 
-    if (uploadLocSearch) {
-      uploadLocSearch.addEventListener("click", () => {
-      const v = uploadLocInput.value;ㄴ
+    uploadLocSearch.addEventListener("click", () => {
+      const v = uploadLocInput.value.trim();
 
-      if (!v.trim()) {
+      if (!v) {
         showStatus(uploadLocStatus, "⚠️ 위치를 입력해 주세요.", "예: 협재");
-        sampleWrap.style.display = "none";
-        shotHint.style.display = "none";
-
-        captureControls.style.display = "none";
-        stopCaptureCam();
-        shotPreviewWrap.style.display = "none";
         return;
       }
 
       if (isHyeopjae(v)) {
-        showStatus(uploadLocStatus, "✅ 위치 확인: 협재(시안)", "권장 촬영 각도 샘플을 표시합니다.");
+        showStatus(uploadLocStatus, "✅ 위치 확인: 협재(시안)", "샘플을 표시합니다.");
         sampleWrap.style.display = "block";
         shotHint.style.display = "block";
         sampleImg.src = "sample-hyeopjae.jpg";
-
         captureControls.style.display = "flex";
       } else {
         showStatus(uploadLocStatus, "⚠️ 현재는 ‘협재’만 시안 지원 중입니다.", "협재로 입력해 테스트해 주세요.");
         sampleWrap.style.display = "none";
         shotHint.style.display = "none";
-
         captureControls.style.display = "none";
-        stopCaptureCam();
-        shotPreviewWrap.style.display = "none";
       }
     });
-    }
 
     // ====== 예측(AR): 위치 검색 후 기능 열기 ======
     const predictLocInput = document.getElementById("predictLocInput");
