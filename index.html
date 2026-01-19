@@ -1338,10 +1338,21 @@
     takeShotBtn.addEventListener("click", takeShotAndUpload);
     window.addEventListener("beforeunload", () => stopCaptureCam());
 
-    uploadLocSearch.addEventListener("click", () => {
-      const v = uploadLocInput.value.trim();
+    document.addEventListener("DOMContentLoaded", () => {
+      const uploadLocSearch = document.getElementById("uploadLocSearch");
+      const uploadLocInput  = document.getElementById("uploadLocInput");
 
-      if (!v) {
+      if (!uploadLocSearch || !uploadLocInput) {
+        console.error("❌ 돋보기 요소 못 찾음");
+        return;
+      }
+
+      uploadLocSearch.addEventListener("click", () => {
+        console.log("🔎 돋보기 클릭됨");
+
+        const v = uploadLocInput.value.trim();
+
+        if (!v) {
         showStatus(uploadLocStatus, "⚠️ 위치를 입력해 주세요.", "예: 협재");
         return;
       }
@@ -1357,7 +1368,8 @@
         sampleWrap.style.display = "none";
         shotHint.style.display = "none";
         captureControls.style.display = "none";
-      }
+        }
+      });
     });
 
     // ====== 예측(AR): 위치 검색 후 기능 열기 ======
@@ -1676,7 +1688,7 @@
       }
 
       // ===== 데모 데이터(원하면 네 실제 데이터로 연결) =====
-      const points = [
+      const adminPoints = [
         { id: "P1", name: "협재 해변", x: 42, y: 40, risk: "보통", erosion_cm: 12, wave_m: 0.6, crowd: 320, reports: 18 },
         { id: "P2", name: "애월 해안", x: 55, y: 28, risk: "우려", erosion_cm: 28, wave_m: 0.9, crowd: 510, reports: 32 },
         { id: "P3", name: "성산 일출봉", x: 74, y: 44, risk: "심각", erosion_cm: 44, wave_m: 1.2, crowd: 880, reports: 61 },
@@ -2070,7 +2082,7 @@
   </div>
 
 <script>
-  const points = ${JSON.stringify(points)};
+  const points = ${JSON.stringify(adminPoints)};
 
   const board = document.getElementById("jejuBoard");
   const pinLayer = document.getElementById("pinLayer");
@@ -2098,7 +2110,7 @@
     // 기존 핀 제거
     [...pinLayer.querySelectorAll(".pin")].forEach(el => el.remove());
 
-    points.forEach(p => {
+    adminPoints.forEach(p => {
       const pin = document.createElement("div");
       pin.className = "pin";
       pin.dataset.id = p.id;
@@ -2187,7 +2199,7 @@
 
   renderPins();
   // 첫 선택(기본)
-  selectPoint(points[0].id);
+  selectPoint(adminPoints[0].id);
 <\/script>
 </body>
 </html>`);
