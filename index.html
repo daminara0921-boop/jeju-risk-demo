@@ -1263,11 +1263,50 @@
       startCaptureCamBtn.style.display = "inline-block";
     }
 
+    let pendingReward = false; // 중복 적립 방지
+
+    function openPopupThenReward(amount) {
+      // roading.html이 메인 html과 "같은 폴더"에 있어야 함
+      const W = 440;
+      const H = 780;
+      const left = Math.max(0, Math.floor((screen.width - W) / 2));
+      const top = Math.max(0, Math.floor((screen.height - H) / 2));
+
+      const popup = window.open(
+        "roading.html",
+        "UploadInfoPopup",
+        `width=${W},height=${H},left=${left},top=${top},resizable=yes,scrollbars=yes`
+      );
+
+      // 팝업 차단 시 예외 처리
+      if (!popup) {
+        alert("팝업이 차단되어 안내창을 열 수 없어요. 팝업 허용 후 다시 시도해줘!");
+        // 팝업 못 열면 적립을 어떻게 할지 선택: 여기서는 '바로 적립' 대신 안내 후 중단
+        pendingReward = false;
+        showStatus(uploadStatus, "⚠️ 안내창을 열 수 없어요.", "브라우저에서 팝업 허용 후 다시 촬영해주세요.");
+        return;
+      }
+
+      // 닫힘 감지(폴링)
+      const timer = setInterval(() => {
+        if (popup.closed) {
+          clearInterval(timer);
+          pendingReward = false;
+
+          // ✅ 팝업을 닫은 뒤에 포인트 적립
+          addPoint(amount);
+          showStatus(uploadStatus, "✅ 안내 확인 완료! +10P 지급", "제보가 반영되었습니다(데모).");
+        }
+      }, 250);
+    }
+
     function takeShotAndUpload() {
       if (!capStream) {
         showStatus(uploadStatus, "⚠️ 카메라가 아직 시작되지 않았어요.", "촬영 모드 시작을 먼저 눌러주세요.");
         return;
       }
+      if (pendingReward) return; // 연타 방지
+      pendingReward = true;
 
       const w = capVideo.videoWidth || 1280;
       const h = capVideo.videoHeight || 720;
@@ -1286,9 +1325,11 @@
 
       // 업로드 데모 처리
       showStatus(uploadStatus, "⏳ 업로드 중...", "촬영한 사진을 업로드하고 있어요.");
+
       setTimeout(() => {
-        addPoint(10);
-        showStatus(uploadStatus, "✅ 업로드 완료! +10P 지급", "제보가 반영되었습니다(데모).");
+        // ✅ 업로드는 끝났지만, 아직 포인트 적립 X
+        showStatus(uploadStatus, "✅ 업로드 완료", "안내창을 확인하고 닫으면 포인트가 적립됩니다.");
+        openPopupThenReward(10);
       }, 650);
     }
 
@@ -1298,7 +1339,7 @@
     window.addEventListener("beforeunload", () => stopCaptureCam());
 
     uploadLocSearch.addEventListener("click", () => {
-      const v = uploadLocInput.value;
+      const v = uploadLocInput.value;ㄴ
 
       if (!v.trim()) {
         showStatus(uploadLocStatus, "⚠️ 위치를 입력해 주세요.", "예: 협재");
