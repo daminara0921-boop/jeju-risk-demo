@@ -1954,17 +1954,19 @@
     }
 
     /* === 모바일에서도 가로(2컬럼) 유지: 전체 화면을 축소해서 넣기 === */
-    html, body { height: 100%; }
-
-    .viewportLock {
-      width: 1920px;              /* "기준" 가로폭을 고정 */
-      height: 1200px;             /* 기준 세로 */
-      transform-origin: top left;  /* 왼쪽 위를 기준으로 축소 */
+    html, body {
+      height: 100%;
+      margin: 0;
+      padding: 0;
+    }
+    body {
+      overflow: auto;
     }
 
-    /* 모바일/좁은 화면에서 자동으로 스케일 다운 */
-    @media (max-width: 980px) {
-      body { overflow: auto; }     /* 스크롤은 가능하게 */
+    .viewportLock {
+      width: 1920px;
+      height: 1200px;
+      transform-origin: top left;
     }
   </style>
 </head>
@@ -2220,26 +2222,15 @@
   </div>
 
   <script>
-    // 화면 크기에 맞춰 전체를 축소(폰에서도 가로 유지)
-    function fit() {
-      const baseW = 1920;
-      const baseH = 1200;
-
-      const s = Math.min(
-        window.innerWidth / baseW,
-        window.innerHeight / baseH
-      );
-
+    function fit(){
+      const baseW = 1920, baseH = 1200;
+      const s = Math.min(window.innerWidth / baseW, window.innerHeight / baseH);
       const el = document.getElementById("viewportLock");
-      if(el) {
-        el.style.transform = "scale(" + s + ")";
-      }
+      if(el) el.style.transform = "scale(" + s + ")";
     }
-
     window.addEventListener("resize", fit);
-    window.addEventListener("DOMContentLoaded", fit);
     fit();
-  </script>
+  <\/script>
 </body>
 </html>`);
 
@@ -2249,4 +2240,3 @@
   </script>
 </body>
 </html>
-
