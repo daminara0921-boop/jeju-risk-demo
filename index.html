@@ -1667,56 +1667,62 @@
       if (e.key === "Enter") adminCodeSubmit.click();
     });
 
-    // ===== 관리자 대시보드 함수 =====
     function openAdminDashboard() {
-      const W = 1920;
-      const H = 1200;
+  const W = 1920;
+  const H = 1200;
 
-      // 화면 중앙에 뜨게
-      const left = Math.max(0, Math.floor((screen.width - W) / 2));
-      const top = Math.max(0, Math.floor((screen.height - H) / 2));
+  const left = Math.max(0, Math.floor((screen.width - W) / 2));
+  const top = Math.max(0, Math.floor((screen.height - H) / 2));
 
-      const win = window.open(
-        "",
-        "AdminDashboard",
-        `width=${W},height=${H},left=${left},top=${top},resizable=yes,scrollbars=yes`
-      );
+  const win = window.open(
+    "",
+    "AdminDashboard",
+    `width=${W},height=${H},left=${left},top=${top},resizable=yes,scrollbars=yes`
+  );
 
-      if (!win) {
-        alert("팝업이 차단되어 관리자 대시보드를 열 수 없어요. 브라우저에서 팝업 허용 후 다시 시도해줘!");
-        return;
-      }
+  if (!win) {
+    alert("팝업이 차단되어 관리자 대시보드를 열 수 없어요. 브라우저에서 팝업 허용 후 다시 시도해줘!");
+    return;
+  }
 
-      // ===== 데모 데이터(원하면 네 실제 데이터로 연결) =====
-      const adminPoints = [
-        { id: "P1", name: "협재 해변", x: 42, y: 40, risk: "보통", erosion_cm: 12, wave_m: 0.6, crowd: 320, reports: 18 },
-        { id: "P2", name: "애월 해안", x: 55, y: 28, risk: "우려", erosion_cm: 28, wave_m: 0.9, crowd: 510, reports: 32 },
-        { id: "P3", name: "성산 일출봉", x: 74, y: 44, risk: "심각", erosion_cm: 44, wave_m: 1.2, crowd: 880, reports: 61 },
-        { id: "P4", name: "중문 해안", x: 52, y: 66, risk: "보통", erosion_cm: 10, wave_m: 0.5, crowd: 260, reports: 9 },
-      ];
+  const adminPoints = [
+    { id: "P1", name: "협재 해변", x: 42, y: 40, risk: "보통", erosion_cm: 12, wave_m: 0.6, crowd: 320, reports: 18 },
+    { id: "P2", name: "애월 해안", x: 55, y: 28, risk: "우려", erosion_cm: 28, wave_m: 0.9, crowd: 510, reports: 32 },
+    { id: "P3", name: "성산 일출봉", x: 74, y: 44, risk: "심각", erosion_cm: 44, wave_m: 1.2, crowd: 880, reports: 61 },
+    { id: "P4", name: "중문 해안", x: 52, y: 66, risk: "보통", erosion_cm: 10, wave_m: 0.5, crowd: 260, reports: 9 },
+  ];
 
-      // 새 창에 HTML을 통째로 씀
-      win.document.open();
-      win.document.write(`<!DOCTYPE html>
+  win.document.open();
+  win.document.write(`<!DOCTYPE html>
 <html lang="ko">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <!-- ✅ 폰에서도 데스크톱 폭으로 렌더링 -->
+  <meta name="viewport" content="width=1920, initial-scale=0.45, user-scalable=yes" />
   <title>관리자 대시보드 | 제주 연안 위험 지도</title>
   <style>
     *{box-sizing:border-box;}
+    html, body { height:100%; margin:0; padding:0; }
     body{
-      margin:0;
       font-family: -apple-system, BlinkMacSystemFont, "Apple SD Gothic Neo", "Segoe UI", Arial, sans-serif;
       background:#f4f5f7;
       color:#111827;
+      overflow:auto;
+      display:flex;
+      justify-content:center;
+      align-items:flex-start;
     }
 
-    /* 1920x1200 데스크톱 규격 느낌 */
+    .viewportLock{
+      width:1920px;
+      height:1200px;
+      transform-origin: top left;
+      margin-top: 10px;
+    }
+
     .wrap{
-      width: min(1920px, 100vw);
-      height: min(1200px, 100vh);
-      margin: 0 auto;
+      width: 1920px;
+      height: 1200px;
       padding: 18px;
       display:flex;
       flex-direction:column;
@@ -1758,7 +1764,6 @@
       font-size:12px;
     }
 
-    /* 메인 그리드: 좌(지도) / 우(수치) */
     .grid{
       flex:1;
       min-height: 0;
@@ -1776,7 +1781,6 @@
       min-height: 0;
     }
 
-    /* 좌측 지도 카드 */
     .mapHead{
       padding: 14px 16px;
       border-bottom: 1px solid #e5e7eb;
@@ -1785,19 +1789,14 @@
       align-items:center;
       gap:10px;
     }
-    .mapHead .h{
-      font-size:14px; font-weight:900;
-    }
-    .mapHead .hint{
-      font-size:12px; color:#6b7280;
-    }
+    .mapHead .h{ font-size:14px; font-weight:900; }
+    .mapHead .hint{ font-size:12px; color:#6b7280; }
 
     .mapBody{
       height: calc(100% - 57px);
       padding: 16px;
       background: linear-gradient(180deg, #f9fafb, #f4f5f7);
     }
-
     .jejuBoard{
       width:100%;
       height:100%;
@@ -1805,8 +1804,8 @@
       border: 1px solid #e5e7eb;
       position: relative;
       overflow:hidden;
+      background:#e5e7eb;
     }
-
     .mapImg{
       position:absolute;
       inset:0;
@@ -1815,13 +1814,8 @@
       object-fit: cover;
       display:block;
     }
+    .pinLayer{ position:absolute; inset:0; }
 
-    .pinLayer{
-      position:absolute;
-      inset:0;
-    }
-
-    /* 포인트(핀) */
     .pin{
       position:absolute;
       width: 14px;
@@ -1854,7 +1848,6 @@
     .dP{background:#a855f7;}
     .dR{background:#ef4444;}
 
-    /* 우측 수치 카드 */
     .infoHead{
       padding: 14px 16px;
       border-bottom: 1px solid #e5e7eb;
@@ -1899,16 +1892,8 @@
       gap: 10px;
     }
 
-    .field{
-      display:flex;
-      flex-direction:column;
-      gap: 6px;
-    }
-    .label{
-      font-size:12px;
-      color:#6b7280;
-      font-weight:900;
-    }
+    .field{ display:flex; flex-direction:column; gap: 6px; }
+    .label{ font-size:12px; color:#6b7280; font-weight:900; }
     input[type="number"], input[type="text"], select{
       width: 100%;
       padding: 12px 12px;
@@ -1921,14 +1906,8 @@
       color:#111827;
     }
 
-    .saveRow{
-      display:flex;
-      gap: 10px;
-      margin-top: 12px;
-    }
-    .saveRow button{
-      flex:1;
-    }
+    .saveRow{ display:flex; gap: 10px; margin-top: 12px; }
+    .saveRow button{ flex:1; }
 
     .table{
       width:100%;
@@ -1952,156 +1931,140 @@
       font-weight: 800;
       color:#111827;
     }
-
-    /* === 모바일에서도 가로(2컬럼) 유지: 전체 화면을 축소해서 넣기 === */
-    html, body {
-      height: 100%;
-      margin: 0;
-      padding: 0;
-    }
-    body {
-      overflow: auto;
-    }
-
-    .viewportLock {
-      width: 1920px;
-      height: 1200px;
-      transform-origin: top left;
-    }
   </style>
 </head>
 <body>
   <div id="viewportLock" class="viewportLock">
     <div class="wrap">
-    <div class="topbar">
-      <div class="topLeft">
-        <div class="title">관리자 대시보드</div>
-        <div class="sub">해안 모니터링 지점 관리 · 수치 기반 편집(슬라이더 없음)</div>
-      </div>
-      <div class="topRight">
-        <button class="ghost" id="btnSync">앱 데이터 불러오기(데모)</button>
-        <button class="pill" id="btnClose">창 닫기</button>
-      </div>
-    </div>
 
-    <div class="grid">
-      <!-- 좌측: 제주도 지도 -->
-      <div class="card">
-        <div class="mapHead">
-          <div class="h">제주도 모니터링 맵</div>
-          <div class="hint">● 지점을 클릭하면 우측 수치 패널이 바뀜</div>
+      <div class="topbar">
+        <div class="topLeft">
+          <div class="title">관리자 대시보드</div>
+          <div class="sub">해안 모니터링 지점 관리 · 수치 기반 편집(슬라이더 없음)</div>
         </div>
+        <div class="topRight">
+          <button class="ghost" id="btnSync">앱 데이터 불러오기(데모)</button>
+          <button class="pill" id="btnClose">창 닫기</button>
+        </div>
+      </div>
 
-        <div class="mapBody">
-          <div class="jejuBoard" id="jejuBoard">
-            <img class="mapImg" src="jeju-risk-map.png" alt="Jeju Risk Map" />
-            <div class="pinLayer" id="pinLayer"></div>
+      <div class="grid">
+        <div class="card">
+          <div class="mapHead">
+            <div class="h">제주도 모니터링 맵</div>
+            <div class="hint">● 지점을 클릭하면 우측 수치 패널이 바뀜</div>
+          </div>
 
-            <div class="legend">
-              <b>위험 등급</b>
-              <div class="legendRow">
-                <span class="dot dG"></span><span>보통</span>
-                <span class="dot dP"></span><span>우려</span>
-                <span class="dot dR"></span><span>심각</span>
+          <div class="mapBody">
+            <div class="jejuBoard" id="jejuBoard">
+              <img class="mapImg" src="jeju-risk-map.png" alt="Jeju Risk Map" />
+              <div class="pinLayer" id="pinLayer"></div>
+
+              <div class="legend">
+                <b>위험 등급</b>
+                <div class="legendRow">
+                  <span class="dot dG"></span><span>보통</span>
+                  <span class="dot dP"></span><span>우려</span>
+                  <span class="dot dR"></span><span>심각</span>
+                </div>
               </div>
             </div>
           </div>
         </div>
-      </div>
 
-      <!-- 우측: 수치 패널(슬라이더 X, 숫자/표) -->
-      <div class="card">
-        <div class="infoHead">
-          <div class="h">선택 지점 수치 편집</div>
-          <div class="s">오른쪽은 "실제 수치" 입력/표시 위주 (슬라이더 제거)</div>
-        </div>
-
-        <div class="infoBody">
-          <div class="block">
-            <div class="blockTitle">선택된 지점</div>
-            <div class="row">
-              <div class="key">지점명</div>
-              <div class="val" id="selName">-</div>
-            </div>
-            <div class="row">
-              <div class="key">지점 ID</div>
-              <div class="val" id="selId">-</div>
-            </div>
+        <div class="card">
+          <div class="infoHead">
+            <div class="h">선택 지점 수치 편집</div>
+            <div class="s">오른쪽은 "실제 수치" 입력/표시 위주</div>
           </div>
 
-          <div class="block">
-            <div class="blockTitle">위험/센서 수치(편집)</div>
+          <div class="infoBody">
+            <div class="block">
+              <div class="blockTitle">선택된 지점</div>
+              <div class="row"><div class="key">지점명</div><div class="val" id="selName">-</div></div>
+              <div class="row"><div class="key">지점 ID</div><div class="val" id="selId">-</div></div>
+            </div>
 
-            <div class="grid2">
-              <div class="field">
-                <div class="label">위험 등급</div>
-                <select id="fRisk">
-                  <option value="보통">보통</option>
-                  <option value="우려">우려</option>
-                  <option value="심각">심각</option>
-                </select>
+            <div class="block">
+              <div class="blockTitle">위험/센서 수치(편집)</div>
+
+              <div class="grid2">
+                <div class="field">
+                  <div class="label">위험 등급</div>
+                  <select id="fRisk">
+                    <option value="보통">보통</option>
+                    <option value="우려">우려</option>
+                    <option value="심각">심각</option>
+                  </select>
+                </div>
+
+                <div class="field">
+                  <div class="label">침식량 (cm)</div>
+                  <input id="fErosion" type="number" step="1" min="0" />
+                </div>
+
+                <div class="field">
+                  <div class="label">파고 (m)</div>
+                  <input id="fWave" type="number" step="0.1" min="0" />
+                </div>
+
+                <div class="field">
+                  <div class="label">최근 7일 방문 수</div>
+                  <input id="fCrowd" type="number" step="1" min="0" />
+                </div>
+
+                <div class="field">
+                  <div class="label">제보(인증) 수</div>
+                  <input id="fReports" type="number" step="1" min="0" />
+                </div>
+
+                <div class="field">
+                  <div class="label">비고</div>
+                  <input id="fMemo" type="text" placeholder="메모(선택)" />
+                </div>
               </div>
 
-              <div class="field">
-                <div class="label">침식량 (cm)</div>
-                <input id="fErosion" type="number" step="1" min="0" />
-              </div>
-
-              <div class="field">
-                <div class="label">파고 (m)</div>
-                <input id="fWave" type="number" step="0.1" min="0" />
-              </div>
-
-              <div class="field">
-                <div class="label">최근 7일 방문 수</div>
-                <input id="fCrowd" type="number" step="1" min="0" />
-              </div>
-
-              <div class="field">
-                <div class="label">제보(인증) 수</div>
-                <input id="fReports" type="number" step="1" min="0" />
-              </div>
-
-              <div class="field">
-                <div class="label">비고</div>
-                <input id="fMemo" type="text" placeholder="메모(선택)" />
+              <div class="saveRow">
+                <button class="ghost" id="btnReset">되돌리기</button>
+                <button class="pill" id="btnSave">저장(데모)</button>
               </div>
             </div>
 
-            <div class="saveRow">
-              <button class="ghost" id="btnReset">되돌리기</button>
-              <button class="pill" id="btnSave">저장(데모)</button>
+            <div class="block">
+              <div class="blockTitle">요약 테이블</div>
+              <table class="table">
+                <thead><tr><th>항목</th><th>값</th></tr></thead>
+                <tbody>
+                  <tr><td>위험 등급</td><td id="tRisk">-</td></tr>
+                  <tr><td>침식량 (cm)</td><td id="tErosion">-</td></tr>
+                  <tr><td>파고 (m)</td><td id="tWave">-</td></tr>
+                  <tr><td>최근 7일 방문</td><td id="tCrowd">-</td></tr>
+                  <tr><td>제보(인증) 수</td><td id="tReports">-</td></tr>
+                </tbody>
+              </table>
             </div>
-          </div>
 
-          <div class="block">
-            <div class="blockTitle">요약 테이블</div>
-            <table class="table" id="summaryTable">
-              <thead>
-                <tr>
-                  <th>항목</th>
-                  <th>값</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr><td>위험 등급</td><td id="tRisk">-</td></tr>
-                <tr><td>침식량 (cm)</td><td id="tErosion">-</td></tr>
-                <tr><td>파고 (m)</td><td id="tWave">-</td></tr>
-                <tr><td>최근 7일 방문</td><td id="tCrowd">-</td></tr>
-                <tr><td>제보(인증) 수</td><td id="tReports">-</td></tr>
-              </tbody>
-            </table>
           </div>
-
         </div>
       </div>
+
     </div>
   </div>
 
 <script>
+  // ===== 스케일(모바일 쪼그라듦 방지): 가로 기준 + 최소값 =====
+  function fit(){
+    const baseW = 1920;
+    let s = window.innerWidth / baseW;
+    s = Math.max(0.45, Math.min(1, s));
+    const el = document.getElementById("viewportLock");
+    if(el) el.style.transform = "scale(" + s + ")";
+  }
+  window.addEventListener("resize", fit);
+  fit();
+
   const adminPoints = ${JSON.stringify(adminPoints)};
 
-  const board = document.getElementById("jejuBoard");
   const pinLayer = document.getElementById("pinLayer");
 
   const selName = document.getElementById("selName");
@@ -2124,23 +2087,26 @@
   let original = null;
 
   function renderPins(){
-    // 기존 핀 제거
-    [...pinLayer.querySelectorAll(".pin")].forEach(el => el.remove());
-
+    pinLayer.innerHTML = "";
     adminPoints.forEach(p => {
       const pin = document.createElement("div");
       pin.className = "pin";
       pin.dataset.id = p.id;
       pin.dataset.risk = p.risk;
       pin.title = p.name + " (" + p.risk + ")";
-
-      // x,y는 % 좌표(0~100)
       pin.style.left = p.x + "%";
       pin.style.top = p.y + "%";
-
       pin.addEventListener("click", () => selectPoint(p.id));
       pinLayer.appendChild(pin);
     });
+  }
+
+  function syncTable(p){
+    tRisk.textContent = p.risk;
+    tErosion.textContent = String(p.erosion_cm);
+    tWave.textContent = String(p.wave_m);
+    tCrowd.textContent = String(p.crowd);
+    tReports.textContent = String(p.reports);
   }
 
   function fillRightPanel(p){
@@ -2157,22 +2123,11 @@
     syncTable(p);
   }
 
-  function syncTable(p){
-    tRisk.textContent = p.risk;
-    tErosion.textContent = String(p.erosion_cm);
-    tWave.textContent = String(p.wave_m);
-    tCrowd.textContent = String(p.crowd);
-    tReports.textContent = String(p.reports);
-  }
-
   function selectPoint(id){
     const p = adminPoints.find(x => x.id === id);
     if(!p) return;
-
     selected = p;
-    // 되돌리기용 백업
     original = JSON.parse(JSON.stringify(p));
-
     fillRightPanel(p);
   }
 
@@ -2187,10 +2142,9 @@
     selected.memo = (fMemo.value || "").trim();
 
     syncTable(selected);
-    renderPins(); // 위험등급 바뀌면 색도 바뀜
+    renderPins();
   }
 
-  // 입력 변화 즉시 테이블 반영(실수치 확인용)
   [fRisk, fErosion, fWave, fCrowd, fReports, fMemo].forEach(el => {
     el.addEventListener("input", applyEditsToSelected);
   });
@@ -2209,34 +2163,21 @@
   });
 
   document.getElementById("btnClose").addEventListener("click", () => window.close());
-
   document.getElementById("btnSync").addEventListener("click", () => {
     alert("데모: 앱의 로컬스토리지/서버에서 데이터를 끌어오는 기능 자리입니다.");
   });
 
   renderPins();
-  // 첫 선택(기본)
   selectPoint(adminPoints[0].id);
 <\/script>
-    </div>
-  </div>
-
-  <script>
-    function fit(){
-      const baseW = 1920, baseH = 1200;
-      const s = Math.min(window.innerWidth / baseW, window.innerHeight / baseH);
-      const el = document.getElementById("viewportLock");
-      if(el) el.style.transform = "scale(" + s + ")";
-    }
-    window.addEventListener("resize", fit);
-    fit();
-  <\/script>
 </body>
 </html>`);
 
-      win.document.close();
-      win.focus();
-    }
+  win.document.close();
+  win.focus();
+}
+
+
   </script>
 </body>
 </html>
